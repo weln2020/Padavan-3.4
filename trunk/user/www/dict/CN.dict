@@ -216,7 +216,7 @@ Adm_Setting_commit_item0=每次改变时
 Adm_Setting_commit_item1=仅手动
 Adm_Setting_commit_now=保存 NVRAM 到闪存:
 Adm_Setting_rwfs=自定义用户在 NAND 闪存上的读/写分区
-Adm_Setting_rwfs_mount=自动挂载RWFS文件系统:
+Adm_Setting_rwfs_mount=文件系统已挂载到读/写分区:
 Adm_System_desc=基本系统控制。
 Adm_System_ident=账号设置
 Adm_System_admin=管理员账号:
@@ -1302,7 +1302,7 @@ OP_desc1=ZVMODELVZ 支持多种满足不同需求的操作模式。请选择能�
 PASS_new=新密码:
 PASS_retype=确认新密码:
 FW_desc1=请按以下步骤进行操作:
-FW_desc2=打开 <a href="ZVDWURLVZ" target="blank">ASUS RT-N56U 固件定制网站</a> 或 <a href="https://github.com/chongshengB/rt-n56u/releases" target="blank">此处</a> 查看是否有固件更新。
+FW_desc2=打开 <a href="ZVDWURLVZ" target="blank">ASUS RT-N56U 固件定制网站</a> 或 <a href="ZVMODWURLVZ" target="blank">此处</a> 查看是否有固件更新。
 FW_desc3=下载最新版本的固件。
 FW_desc4=在 [固件文件] 选项中选择已下载的固件。
 FW_desc5=点击 [上传] 将文件上传到路由器。
@@ -1328,7 +1328,7 @@ Setting_upload_itemdesc=请指定路由器配置文件的路径和名称，然�
 Setting_upload_hint=文件名或路径无效!
 Setting_factorydefault_hint1=已清除当前设置，路由器将恢复到出厂设置。\n
 Setting_factorydefault_hint2=确认继续?
-Setting_factorydefault_iphint=ZVMODELVZ
+Setting_factorydefault_iphint=ZVMODELVZ 默认的局域网 IP 是 192.168.2.1\n如果无法返回设置页面，请重新获取你的电脑的 IP 地址。
 SET_ok_desc=请稍候，正在上传设置，大约需要 30 秒时间!
 SET_fail_desc=设置或上传配置文件失败，可以在系统日志中查看详细信息。请检查文件后再试。
 RHELP_desc4=路由规则中的目的网络 (例如192.168.0.0) 或主机 (例如 192.168.123.11)
@@ -1902,5 +1902,3 @@ Login=登录
 BTN_SHUTDOWN=关机
 JS_shutdown=关机后需要手动断电并重新接电才能启动路由!!!\n确定要关机吗？
 BTN_FREEMEMORY=清理内存
-
-
