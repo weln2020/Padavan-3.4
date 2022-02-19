@@ -6,8 +6,8 @@ on:
   watch:
     #types: [started]
   push:
-    tags:
-    - 'v*'
+    #tags:
+    #- 'v*'
 env:
   TNAME: "MSG1500-7615"
 
