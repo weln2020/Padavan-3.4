@@ -3,9 +3,9 @@ name: Build MSG1500-7615
 on: 
   release:
     types: [published]
-  watch:
+  #watch:
     #types: [started]
-  push:
+  #push:
     #tags:
     #- 'v*'
 env:
