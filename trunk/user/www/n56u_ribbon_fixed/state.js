@@ -875,7 +875,7 @@ function show_footer() {
 	footer_code += '<span>Highcharts by <a href="https://github.com/TorsteinHonsi/Motion-Highcharts-Plugin">Torstein Hønsi</a> & <a href="http://www.highcharts.com">Highsoft</a></span></br>\n';
 	footer_code += '<span>Big icons designed by <a href="http://www.freepik.com">Freepik</a></span></br>\n';
 	footer_code += '<span>Non-Commercial Use Only</span></br>\n';
-	footer_code += '<span>linux-3.4 by 源代码: <a href="https://github.com/vb1980/Padavan-KVR">vb1980</a> & 恩山论坛: <a href="https://www.right.com.cn/forum/thread-6896728-1-1.html">WELN</a></span></br>\n';
+	footer_code += '<span>LINUX-3.4 by 恩山论坛: <a href="https://www.right.com.cn/forum/thread-6896728-1-1.html">WELN</a></span></br>\n';
 	footer_code += '</div>\n';
 
 	$j("#footer").html(footer_code);
