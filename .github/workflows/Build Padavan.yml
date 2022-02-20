@@ -1,4 +1,4 @@
-name: Build K2P
+name: Build Padavan
 
 on: 
   release:
