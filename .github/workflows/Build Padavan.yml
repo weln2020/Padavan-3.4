@@ -10,7 +10,7 @@ on:
     - 'v*'
 
 env:
-  TNAME: "PSG1218"
+  TNAME: "K2P"
 
 jobs:
   build:
