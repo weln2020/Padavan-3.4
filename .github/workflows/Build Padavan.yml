@@ -10,7 +10,7 @@ on:
     - 'v*'
 
 env:
-  TNAME: "K2P"
+  TNAME: "MSG1500-7615"
 
 jobs:
   build:
