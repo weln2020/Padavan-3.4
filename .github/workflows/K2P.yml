@@ -3,14 +3,14 @@ name: Build K2P
 on: 
   release:
     types: [published]
+  watch:
+    types: [started]
   push:
     tags:
     - 'v*'
-  watch:
-    types: [started]
 
 env:
-  TNAME: "K2P"
+  TNAME: "PSG1218"
 
 jobs:
   build:
