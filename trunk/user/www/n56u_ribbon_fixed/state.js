@@ -1,27 +1,29 @@
-var sw_mode = '<% nvram_get_x("", "sw_mode"); %>';
-var wan_route_x = '<% nvram_get_x("", "wan_route_x"); %>';
-var wan_proto = '<% nvram_get_x("", "wan_proto"); %>';
-var lan_proto = '<% nvram_get_x("", "lan_proto_x"); %>';
-var log_float = '<% nvram_get_x("", "log_float_ui"); %>';
-var reboot_schedule_support = '<% nvram_get_x("", "reboot_schedule_enable"); %>';
-var ss_schedule_support = '<% nvram_get_x("", "ss_schedule_enable"); %>';
-var log_stamp = 0;
-var sysinfo = <% json_system_status(); %>;
-var uptimeStr = "<% uptime(); %>";
-var timezone = uptimeStr.substring(26, 31);
-var newformat_systime = uptimeStr.substring(8, 11) + " " + uptimeStr.substring(5, 7) + " " + uptimeStr.substring(17, 25) + " " + uptimeStr.substring(12, 16);  //Ex format: Jun 23 10:33:31 2008
-var systime_millsec = Date.parse(newformat_systime); // millsec from system
-var JS_timeObj = new Date(); // 1970.1.1
-var cookie_pref = 'n56u_cookie_';
+var sw_mode = '<% nvram_get_x("", "sw_mode"); %>',
+        wan_route_x = '<% nvram_get_x("", "wan_route_x"); %>',
+        wan_proto = '<% nvram_get_x("", "wan_proto"); %>',
+        lan_proto = '<% nvram_get_x("", "lan_proto_x"); %>',
+        log_float = '<% nvram_get_x("", "log_float_ui"); %>',
+        reboot_schedule_support = '<% nvram_get_x("", "reboot_schedule_enable"); %>',
+        ss_schedule_support = '<% nvram_get_x("", "ss_schedule_enable"); %>',
+	
+        log_stamp = 0,
+        sysinfo = <% json_system_status(); %>,
+        uptimeStr = "<% uptime(); %>",
+        timezone = uptimeStr.substring(26, 31),
+	
+        newformat_systime = uptimeStr.substring(8, 11) + " " + uptimeStr.substring(5, 7) + " " + uptimeStr.substring(17, 25) + " " + uptimeStr.substring(12, 16), //Ex format: Jun 23 10:33:31 2008
+        systime_millsec = Date.parse(newformat_systime), // millsec from system
+        JS_timeObj = new Date(), // 1970.1.1
+        cookie_pref = 'n56u_cookie_',
 
-var uagent = navigator.userAgent.toLowerCase();
-var is_ie11p = (/trident\/7\./).test(uagent);
-var is_mobile = (/iphone|ipod|ipad|iemobile|android|blackberry|fennec/).test(uagent);
+        uagent = navigator.userAgent.toLowerCase(),
+        is_ie11p = (/trident\/7\./).test(uagent),
+        is_mobile = (/iphone|ipod|ipad|iemobile|android|blackberry|fennec/).test(uagent),
 
-var new_wan_internet = '<% nvram_get_x("", "link_internet"); %>';
-var id_check_status = 0;
-var id_system_info = 0;
-var cookie = {
+        new_wan_internet = '<% nvram_get_x("", "link_internet"); %>',
+        id_check_status = 0,
+        id_system_info = 0,
+        cookie = {
 	set: function (key, value, days) {
 		document.cookie = cookie_pref + key + '=' + value + '; expires=' +
 			(new Date(new Date().getTime() + ((days ? days : 14) * 86400000))).toUTCString() + '; path=/';
@@ -35,8 +37,8 @@ var cookie = {
 	}
 };
 function HashMap() {
-	var length = 0;
-	var obj = new Object();
+	var length = 0,
+	        obj = new Object();
 	this.isEmpty = function () {
 		return length == 0;
 	};
@@ -250,17 +252,17 @@ function showSystemInfo(cpu_now, force) {
 		getSystemJsonData(cpu_now, sysinfo.ram);
 }
 
-var menu_code = "", navL1 = "", navL2 = "", tab_code = "", footer_code;
-var enabled2Gclass = '<% nvram_match_x("","rt_radio_x", "1", "btn-info"); %>';
-var enabled5Gclass = '<% nvram_match_x("","wl_radio_x", "1", "btn-info"); %>';
-var enabledGuest2Gclass = '<% nvram_match_x("","rt_guest_enable", "1", "btn-info"); %>';
-var enabledGuest5Gclass = '<% nvram_match_x("","wl_guest_enable", "1", "btn-info"); %>';
-var enabledBtnCommit = '<% nvram_match_x("","nvram_manual", "0", "display:none;"); %>';
+var menu_code = "", navL1 = "", navL2 = "", tab_code = "", footer_code,
+        enabled2Gclass = '<% nvram_match_x("","rt_radio_x", "1", "btn-info"); %>',
+        enabled5Gclass = '<% nvram_match_x("","wl_radio_x", "1", "btn-info"); %>',
+        enabledGuest2Gclass = '<% nvram_match_x("","rt_guest_enable", "1", "btn-info"); %>',
+        enabledGuest5Gclass = '<% nvram_match_x("","wl_guest_enable", "1", "btn-info"); %>',
+        enabledBtnCommit = '<% nvram_match_x("","nvram_manual", "0", "display:none;"); %>';
 
 // L3 = The third Level of Menu
 function show_banner(L3) {
-	var $j = jQuery.noConflict();
-	var bc = '',
+	var $j = jQuery.noConflict(),
+	        bc = '',
 		style_2g = 'width:55px;',
 		style_5g = 'width:55px;';
 	if (!support_5g_radio()) {
@@ -532,174 +534,174 @@ var menuL2 = [
 
 /* plugin menu 插件菜单 */
 if (found_app_scutclient()) {
-	var mx = { "title": "<#menu5_13#>", "link": "scutclient.asp", index: "11" };//json格式
-	var mx2 = [mx, { "title": "<#menu5_13_log#>", "link": "scutclient_log.asp" }];//显示tab，多个页面
+	var mx = { "title": "<#menu5_13#>", "link": "scutclient.asp", index: "11" },//json格式
+	        mx2 = [mx, { "title": "<#menu5_13_log#>", "link": "scutclient_log.asp" }];//显示tab，多个页面
 	menuL2.push(mx);//必须写
 	tabMenuHash.put('11', mx2);
 }
 if (found_app_dnsforwarder()) {
-	var mx = { "title": "<#menu5_15#>", "link": "dns-forwarder.asp", index: "12" };
-	var mx2 = [mx];
+	var mx = { "title": "<#menu5_15#>", "link": "dns-forwarder.asp", index: "12" },
+	        mx2 = [mx];
 	menuL2.push(mx);
 	tabMenuHash.put('12', mx2);
 }
 if (found_app_shadowsocks()) {
-	var mx = { "title": "<#menu5_16#>", "link": "Shadowsocks.asp", index: "13" };
-	var mx2 = [mx, { "title": "<#menu5_16_20#>", "link": "Shadowsocks_log.asp" }];
+	var mx = { "title": "<#menu5_16#>", "link": "Shadowsocks.asp", index: "13" },
+	        mx2 = [mx, { "title": "<#menu5_16_20#>", "link": "Shadowsocks_log.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('13', mx2);
 }
 if (found_app_mentohust()) {
-	var mx = { "title": "<#menu5_18#>", "link": "mentohust.asp", index: "14" };
-	var mx2 = [mx, { "title": "<#menu5_13_log#>", "link": "mentohust_log.asp" }];
+	var mx = { "title": "<#menu5_18#>", "link": "mentohust.asp", index: "14" },
+	        mx2 = [mx, { "title": "<#menu5_13_log#>", "link": "mentohust_log.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('14', mx2);
 }
 if (found_app_adbyby() && !found_app_koolproxy()) {
-	var mx = { "title": "<#menu5_20#>", "link": "Advanced_adbyby.asp", index: "15" };
-	var mx2 = [{ "title": "<#menu5_20_1#>", "link": "Advanced_adbyby.asp" }];
+	var mx = { "title": "<#menu5_20#>", "link": "Advanced_adbyby.asp", index: "15" },
+	        mx2 = [{ "title": "<#menu5_20_1#>", "link": "Advanced_adbyby.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('15', mx2);
 }
 if (!found_app_adbyby() && found_app_koolproxy()) {
-	var mx = { "title": "<#menu5_20#>", "link": "Advanced_koolproxy.asp", index: "15" };
-	var mx2 = [{ "title": "<#menu5_26_1#>", "link": "Advanced_koolproxy.asp" }];
+	var mx = { "title": "<#menu5_20#>", "link": "Advanced_koolproxy.asp", index: "15" },
+	        mx2 = [{ "title": "<#menu5_26_1#>", "link": "Advanced_koolproxy.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('15', mx2);
 }
 if (found_app_adbyby() && found_app_koolproxy()) {
-	var mx = { "title": "<#menu5_20#>", "link": "Advanced_adbyby.asp", index: "15" };
-	var mx2 = [{ "title": "<#menu5_20_1#>", "link": "Advanced_adbyby.asp" }, { "title": "<#menu5_26_1#>", "link": "Advanced_koolproxy.asp" }];
+	var mx = { "title": "<#menu5_20#>", "link": "Advanced_adbyby.asp", index: "15" },
+	        mx2 = [{ "title": "<#menu5_20_1#>", "link": "Advanced_adbyby.asp" }, { "title": "<#menu5_26_1#>", "link": "Advanced_koolproxy.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('15', mx2);
 }
 if (found_app_smartdns() && !found_app_adguardhome()) {
-	var mx = { "title": "<#menu5_29#>", "link": "Advanced_smartdns.asp", index: "16" };
-	var mx2 = [{ "title": "<#menu5_24_1#>", "link": "Advanced_smartdns.asp" }];
+	var mx = { "title": "<#menu5_29#>", "link": "Advanced_smartdns.asp", index: "16" },
+	        mx2 = [{ "title": "<#menu5_24_1#>", "link": "Advanced_smartdns.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('16', mx2);
 }
 if (!found_app_smartdns() && found_app_adguardhome()) {
-	var mx = { "title": "<#menu5_29#>", "link": "Advanced_adguardhome.asp", index: "16" };
-	var mx2 = [{ "title": "<#menu5_28_1#>", "link": "Advanced_adguardhome.asp" }];
+	var mx = { "title": "<#menu5_29#>", "link": "Advanced_adguardhome.asp", index: "16" },
+	        mx2 = [{ "title": "<#menu5_28_1#>", "link": "Advanced_adguardhome.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('16', mx2);
 }
 if (found_app_smartdns() && found_app_adguardhome()) {
-	var mx = { "title": "<#menu5_29#>", "link": "Advanced_smartdns.asp", index: "16" };
-	var mx2 = [{ "title": "<#menu5_24_1#>", "link": "Advanced_smartdns.asp" }, { "title": "<#menu5_28_1#>", "link": "Advanced_adguardhome.asp" }];
+	var mx = { "title": "<#menu5_29#>", "link": "Advanced_smartdns.asp", index: "16" },
+	        mx2 = [{ "title": "<#menu5_24_1#>", "link": "Advanced_smartdns.asp" }, { "title": "<#menu5_28_1#>", "link": "Advanced_adguardhome.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('16', mx2);
 }
 if (found_app_aliddns() && !found_app_ddnsto() && !found_app_zerotier() && !found_app_wireguard()) {
-	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" };
-	var mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }];
+	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" },
+	        mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
 if (!found_app_aliddns() && found_app_ddnsto() && !found_app_zerotier() && !found_app_wireguard()) {
-	var mx = { "title": "<#menu5_30#>", "link": "Advanced_ddnsto.asp", index: "17" };
-	var mx2 = [{ "title": "<#menu5_32_2#>", "link": "Advanced_ddnsto.asp" }];
+	var mx = { "title": "<#menu5_30#>", "link": "Advanced_ddnsto.asp", index: "17" },
+	        mx2 = [{ "title": "<#menu5_32_2#>", "link": "Advanced_ddnsto.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
 if (!found_app_aliddns() && !found_app_ddnsto() && found_app_zerotier() && !found_app_wireguard()) {
-	var mx = { "title": "<#menu5_30#>", "link": "Advanced_zerotier.asp", index: "17" };
-	var mx2 = [{ "title": "<#menu5_32_1#>", "link": "Advanced_zerotier.asp" }];
+	var mx = { "title": "<#menu5_30#>", "link": "Advanced_zerotier.asp", index: "17" },
+	        mx2 = [{ "title": "<#menu5_32_1#>", "link": "Advanced_zerotier.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
 if (!found_app_aliddns() && !found_app_ddnsto() && !found_app_zerotier() && found_app_wireguard()) {
-	var mx = { "title": "<#menu5_30#>", "link": "Advanced_wireguard.asp", index: "17" };
-	var mx2 = [{ "title": "<#menu5_35_1#>", "link": "Advanced_wireguard.asp" }];
+	var mx = { "title": "<#menu5_30#>", "link": "Advanced_wireguard.asp", index: "17" },
+	        mx2 = [{ "title": "<#menu5_35_1#>", "link": "Advanced_wireguard.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
 
 if (found_app_aliddns() && found_app_ddnsto() && !found_app_zerotier() && !found_app_wireguard()) {
-	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" };
-	var mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_2", "link": "Advanced_ddnsto.asp" }];
+	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" },
+	        mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_2", "link": "Advanced_ddnsto.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
 
 if (found_app_aliddns() && !found_app_ddnsto() && found_app_zerotier() && !found_app_wireguard()) {
-	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" };
-	var mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }];
+	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" },
+	        mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
 if (found_app_aliddns() && !found_app_ddnsto() && !found_app_zerotier() && found_app_wireguard()) {
-	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" };
-	var mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_35_1", "link": "Advanced_wireguard.asp" }];
+	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" },
+	        mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_35_1", "link": "Advanced_wireguard.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
 
 if (!found_app_aliddns() && found_app_ddnsto() && found_app_zerotier() && !found_app_wireguard()) {
-	var mx = { "title": "<#menu5_30#>", "link": "Advanced_ddnsto.asp", index: "17" };
-	var mx2 = [{ "title": "<#menu5_32_2#>", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }];
+	var mx = { "title": "<#menu5_30#>", "link": "Advanced_ddnsto.asp", index: "17" },
+	        mx2 = [{ "title": "<#menu5_32_2#>", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
 if (!found_app_aliddns() && found_app_ddnsto() && !found_app_zerotier() && found_app_wireguard()) {
-	var mx = { "title": "<#menu5_30#>", "link": "Advanced_ddnsto.asp", index: "17" };
-	var mx2 = [{ "title": "<#menu5_33_1#>", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_35_1", "link": "Advanced_wireguard.asp" }];
+	var mx = { "title": "<#menu5_30#>", "link": "Advanced_ddnsto.asp", index: "17" },
+	        mx2 = [{ "title": "<#menu5_33_1#>", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_35_1", "link": "Advanced_wireguard.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
 if (!found_app_aliddns() && !found_app_ddnsto() && found_app_zerotier() && found_app_wireguard()) {
-	var mx = { "title": "<#menu5_30#>", "link": "Advanced_zerotier.asp", index: "17" };
-	var mx2 = [{ "title": "<#menu5_32_1#>", "link": "Advanced_zerotier.asp" }, { "title": "menu5_35_1", "link": "Advanced_wireguard.asp" }];
+	var mx = { "title": "<#menu5_30#>", "link": "Advanced_zerotier.asp", index: "17" },
+	        mx2 = [{ "title": "<#menu5_32_1#>", "link": "Advanced_zerotier.asp" }, { "title": "menu5_35_1", "link": "Advanced_wireguard.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
 
 if (found_app_aliddns() && found_app_ddnsto() && found_app_zerotier() && !found_app_wireguard()) {
-	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" };
-	var mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_2", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }];
+	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" },
+	        mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_2", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
 if (found_app_aliddns() && found_app_ddnsto() && !found_app_zerotier() && found_app_wireguard()) {
-	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" };
-	var mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_2", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_35_1", "link": "Advanced_wireguard.asp" }];
+	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" },
+	        mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_2", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_35_1", "link": "Advanced_wireguard.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
 if (!found_app_aliddns() && found_app_ddnsto() && found_app_zerotier() && found_app_wireguard()) {
-	var mx = { "title": "<#menu5_30#>", "link": "Advanced_ddnsto.asp", index: "17" };
-	var mx2 = [{ "title": "<#menu5_32_2#>", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }, { "title": "menu5_35_1", "link": "Advanced_wireguard.asp" }];
+	var mx = { "title": "<#menu5_30#>", "link": "Advanced_ddnsto.asp", index: "17" },
+	        mx2 = [{ "title": "<#menu5_32_2#>", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }, { "title": "menu5_35_1", "link": "Advanced_wireguard.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
 if (found_app_aliddns() && found_app_ddnsto() && found_app_zerotier() && found_app_wireguard()) {
-	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" };
-	var mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_2", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }, { "title": "menu5_35_1", "link": "Advanced_wireguard.asp" }];
+	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" },
+	        mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_2", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }, { "title": "menu5_35_1", "link": "Advanced_wireguard.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
 if (found_app_frp()) {
-	var mx = { "title": "<#menu5_25#>", "link": "Advanced_frp.asp", index: "18" };
-	var mx2 = [{ "title": "<#menu5_25_1#>", "link": "Advanced_frp.asp" }];
+	var mx = { "title": "<#menu5_25#>", "link": "Advanced_frp.asp", index: "18" },
+	        mx2 = [{ "title": "<#menu5_25_1#>", "link": "Advanced_frp.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('18', mx2);
 }
 if (found_app_caddy()) {
-	var mx = { "title": "<#menu5_27#>", "link": "Advanced_caddy.asp", index: "19" };
-	var mx2 = [{ "title": "<#menu5_27_1#>", "link": "Advanced_caddy.asp" }];
+	var mx = { "title": "<#menu5_27#>", "link": "Advanced_caddy.asp", index: "19" },
+	        mx2 = [{ "title": "<#menu5_27_1#>", "link": "Advanced_caddy.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('19', mx2);
 }
 if (found_app_wyy()) {
-	var mx = { "title": "<#menu5_31#>", "link": "Advanced_wyy.asp", index: "20" };
-	var mx2 = [{ "title": "<#menu5_31_1#>", "link": "Advanced_wyy.asp" }];
+	var mx = { "title": "<#menu5_31#>", "link": "Advanced_wyy.asp", index: "20" },
+	        mx2 = [{ "title": "<#menu5_31_1#>", "link": "Advanced_wyy.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('20', mx2);
 }
 if (found_app_aldriver()) {
-	var mx = { "title": "<#menu5_36#>", "link": "Advanced_aliyundrive.asp", index: "22" };
-	var mx2 = [{ "title": "<#menu5_36_1#>", "link": "Advanced_aliyundrive.asp" }];
+	var mx = { "title": "<#menu5_36#>", "link": "Advanced_aliyundrive.asp", index: "22" },
+	        mx2 = [{ "title": "<#menu5_36_1#>", "link": "Advanced_aliyundrive.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('22', mx2);
 }
@@ -795,8 +797,8 @@ function show_menu(L1, L2, L3) {
 	for (var i = 0; i < menuL1.length; i++) {
 		var title1 = menuL1[i].title;
 		if (title1 == "") { continue; }
-		var link1 = menuL1[i].link;
-		var icon1 = menuL1[i].icon !== "" ? menuL1[i].icon : "";
+		var link1 = menuL1[i].link,
+		        icon1 = menuL1[i].icon !== "" ? menuL1[i].icon : "";
 
 		if (L1 == (i + 1)) {
 			if (L2 <= 0) link1 = 'javascript:;';
@@ -812,8 +814,8 @@ function show_menu(L1, L2, L3) {
 	for (var i = 0; i < menuL2.length; i++) {
 		var title2 = menuL2[i].title;
 		if (title2 == "") { continue; }
-		var link2 = menuL2[i].link;
-		var icon2 = "icon-minus";
+		var link2 = menuL2[i].link,
+		        icon2 = "icon-minus";
 		if (L2 == (i + 1))
 			navL2 += '<a href="javascript: void(0)" class="current"><i class="' + icon2 + '"></i><b>&nbsp;&nbsp;' + title2 + '</b></a>';
 		else
@@ -849,8 +851,9 @@ function show_menu(L1, L2, L3) {
 			menuL2_title[i] = menuL2[i].title;
 			menuL2_link[i] = menuL2[i].link;
 		}
-		var tabKeys = tabMenuHash.keySet();
-		var tabKey, tabMenus;
+		var tabKeys = tabMenuHash.keySet(),
+		        tabKey,
+		        tabMenus;
 		for (var i = 0; i < tabKeys.length; i++) {
 			tabKey = tabKeys[i];
 			tabMenus = tabMenuHash.get(tabKey);
@@ -870,13 +873,13 @@ function show_menu(L1, L2, L3) {
 function show_footer() {
 	var $j = jQuery.noConflict();
 	var footer_code = '<div align="center" class="bottom-image"></div>\n';
-	footer_code += '<div align="center" class="copyright"><#footer_copyright_desc#></div>\n';
-	footer_code += '<div align="center">\n';
-	footer_code += '<span>Highcharts by <a href="https://github.com/TorsteinHonsi/Motion-Highcharts-Plugin">Torstein Hønsi</a> & <a href="http://www.highcharts.com">Highsoft</a></span></br>\n';
-	footer_code += '<span>Big icons designed by <a href="http://www.freepik.com">Freepik</a></span></br>\n';
-	footer_code += '<span>Non-Commercial Use Only</span></br>\n';
-	footer_code += '<span>LINUX-3.4 by 恩山论坛: <a href="https://www.right.com.cn/forum/thread-6896728-1-1.html">WELN</a></span></br>\n';
-	footer_code += '</div>\n';
+	    footer_code += '<div align="center" class="copyright"><#footer_copyright_desc#></div>\n';
+	    footer_code += '<div align="center">\n';
+	    footer_code += '<span>Highcharts by <a href="https://github.com/TorsteinHonsi/Motion-Highcharts-Plugin">Torstein Hønsi</a> & <a href="http://www.highcharts.com">Highsoft</a></span></br>\n';
+	    footer_code += '<span>Big icons designed by <a href="http://www.freepik.com">Freepik</a></span></br>\n';
+	    footer_code += '<span>Non-Commercial Use Only</span></br>\n';
+	    footer_code += '<span>LINUX-3.4 by 恩山论坛: <a href="https://www.right.com.cn/forum/thread-6896728-1-1.html">WELN</a></span></br>\n';
+	    footer_code += '</div>\n';
 
 	$j("#footer").html(footer_code);
 
@@ -939,13 +942,13 @@ function checkTime(i) {
 function show_loading_obj() {
 	var $j = jQuery.noConflict();
 	var code = '<center><div id="loadingBlock" class="loadingBlock">';
-	code += '<div class="container-fluid">';
-	code += '<div class="well">';
-	code += '<div class="progress progress-striped active"><div class="bar" id="proceeding_bar"><span id="proceeding_txt"></span></div></div>';
-	code += '<span id="proceeding_main_txt"><#Main_alert_proceeding_desc4#></span></span>';
-	code += '</div>';
-	code += '</div>';
-	code += '</div></center>';
+	    code += '<div class="container-fluid">';
+	    code += '<div class="well">';
+	    code += '<div class="progress progress-striped active"><div class="bar" id="proceeding_bar"><span id="proceeding_txt"></span></div></div>';
+	    code += '<span id="proceeding_main_txt"><#Main_alert_proceeding_desc4#></span></span>';
+	    code += '</div>';
+	    code += '</div>';
+	    code += '</div></center>';
 
 	$j("#Loading").html(code);
 	id_check_status = setTimeout('hideLoading();', 3000);
@@ -1135,10 +1138,10 @@ function getElementsByName_iefix(tag, name) {
 }
 
 function getElementsByClassName_iefix(tag, name) {
-	var tagObjs = document.getElementsByTagName(tag);
-	var objsName;
-	var targetObjs = new Array();
-	var targetObjs_length;
+	var tagObjs = document.getElementsByTagName(tag),
+                objsName,
+	        targetObjs = new Array(),
+	        targetObjs_length;
 
 	if (!(typeof (name) == "string" && name.length > 0))
 		return [];
@@ -1413,11 +1416,9 @@ function inputCtrl(obj, flag) {
 }
 
 function IsPC() {
-	var userAgentInfo = navigator.userAgent;
-	var Agents = ["Android", "iPhone",
-		"SymbianOS", "Windows Phone",
-		"iPad", "iPod"];
-	var flag = true;
+	var userAgentInfo = navigator.userAgent,
+	        Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"],
+                flag = true;
 	for (var v = 0; v < Agents.length; v++) {
 		if (userAgentInfo.indexOf(Agents[v]) > 0) {
 			flag = false;
@@ -1695,7 +1696,7 @@ function mobilestyle() {
 
 	$j = jQuery.noConflict();
 	setTimeout(function () {
-		if ($j(window).width() < 800) {//body 加载晚
+		if ($j(window).width() < 800) {//body 延迟加载
 			var qc = "";
 			$j('.table-big tr').each(function () {
 				var o = $j(this);
