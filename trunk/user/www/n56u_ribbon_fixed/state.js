@@ -458,14 +458,14 @@ var tabM6 = [
 	{ "title": "<#menu5_6_5#>", "link": "Advanced_Services_Content.asp" },
 	{ "title": "<#menu5_6_1#>", "link": "Advanced_OperationMode_Content.asp" },
 	{ "title": "<#menu5_6_3#>", "link": "Advanced_FirmwareUpgrade_Content.asp" },
-	{ "title": "<#menu5_6_4#>", "link": "Advanced_SettingBackup_Content.asp" }
+	{ "title": "<#menu5_6_4#>", "link": "Advanced_SettingBackup_Content.asp" },
+	{ "title": "<#menu5_6_6#>", "link": "Advanced_Console_Content.asp" }
 ];
 var tabM7 = [
 	{ "title": "<#menu5_10_1#>", "link": "Advanced_Tweaks_Content.asp" },
-	{ "title": "<#menu5_10_3#>", "link": "Advanced_InetDetect_Content.asp" },
 	{ "title": "<#menu5_10_2#>", "link": "Advanced_Scripts_Content.asp" },
-	{ "title": "<#menu5_6_6#>", "link": "Advanced_Console_Content.asp" },
-  { "title": "<#menu5_22_1#>", "link": "Advanced_web.asp" }
+	{ "title": "<#menu5_10_3#>", "link": "Advanced_InetDetect_Content.asp" }
+	{ "title": "<#menu5_22_1#>", "link": "Advanced_web.asp" }
 ];
 var tabM8 = [
 	{ "title": "<#menu5_11#>", "link": "Main_WStatus2g_Content.asp" },
