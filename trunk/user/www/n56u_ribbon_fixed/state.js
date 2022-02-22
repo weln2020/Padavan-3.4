@@ -476,6 +476,9 @@ var tabM8 = [
 	{ "title": "", "link": "" },
 	{ "title": "", "link": "" },
 	{ "title": "", "link": "" },
+	{ "title": "", "link": "" },
+	{ "title": "", "link": "" },
+	{ "title": "", "link": "" },
 	{ "title": "", "link": "" }
 ];
 var tabM9 = [
@@ -872,7 +875,7 @@ function show_footer() {
 	footer_code += '<span>Highcharts by <a href="https://github.com/TorsteinHonsi/Motion-Highcharts-Plugin">Torstein Hønsi</a> & <a href="http://www.highcharts.com">Highsoft</a></span></br>\n';
 	footer_code += '<span>Big icons designed by <a href="http://www.freepik.com">Freepik</a></span></br>\n';
 	footer_code += '<span>Non-Commercial Use Only</span></br>\n';
-	footer_code += '<span>恩山论坛: <a href="https://www.right.com.cn/forum/thread-6896728-1-1.html">WELN</a></span></br>\n';
+	footer_code += '<span>恩山论坛发布页: <a href="https://www.right.com.cn/forum/thread-6896728-1-1.html">WELN</a></span></br>\n';
 	footer_code += '</div>\n';
 
 	$j("#footer").html(footer_code);
@@ -1411,7 +1414,9 @@ function inputCtrl(obj, flag) {
 
 function IsPC() {
 	var userAgentInfo = navigator.userAgent;
-	var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+	var Agents = ["Android", "iPhone",
+		"SymbianOS", "Windows Phone",
+		"iPad", "iPod"];
 	var flag = true;
 	for (var v = 0; v < Agents.length; v++) {
 		if (userAgentInfo.indexOf(Agents[v]) > 0) {
@@ -1690,7 +1695,7 @@ function mobilestyle() {
 
 	$j = jQuery.noConflict();
 	setTimeout(function () {
-		if ($j(window).width() < 800) {//body 延迟加载
+		if ($j(window).width() < 800) {    //body 延迟加载
 			var qc = "";
 			$j('.table-big tr').each(function () {
 				var o = $j(this);
