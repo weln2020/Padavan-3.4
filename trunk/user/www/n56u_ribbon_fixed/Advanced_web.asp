@@ -51,7 +51,16 @@ function initial(){
 	if (!login_safe())
 		textarea_scripts_enabled(0);
 		//load_body();
-	if (found_app_shadowsocks()){
+if (found_app_vpnsrv()){
+	showhide_div('row_wvpns', true);
+}
+if (found_app_vpncli()){
+	showhide_div('row_wvpnc', true);
+}
+if (found_app_AiDisk()){
+	showhide_div('row_wusb', true);
+}
+if (found_app_shadowsocks()){
 	showhide_div('row_wss', true);
 }
 if (found_app_scutclient()){
@@ -134,11 +143,10 @@ function applyRule(){
 							<div class="round_bottom">
 								<div class="row-fluid">
 									<div id="tabMenu" class="submenuBlock"></div>
-									<div class="alert alert-info" style="margin: 10px;">把你不想在网页上显示的菜单选项关闭，适用于重度强迫症......<br />
-									<div>此选项只能屏蔽页面的显示，并不会删除程序。</div>
-									</div>
+									<div class="alert alert-info" style="margin: 10px;">隐藏下列路由器菜单选项，这并不会删除程序或改变设置。</div>
 									<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
-										<tr >
+
+										<tr id="row_wvpns" style="display:none">
 											<th width="50%">VPN服务器</th>
 											<td>
 													<div class="main_itoggle">
@@ -152,7 +160,8 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
-																				<tr >
+
+										<tr id="row_wvpnc" style="display:none">
 											<th width="50%">VPN客户端</th>
 											<td>
 													<div class="main_itoggle">
@@ -166,6 +175,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
+
 										<tr >
 											<th width="50%">网络流量</th>
 											<td>
@@ -180,6 +190,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
+
 										<tr >
 											<th width="50%">系统信息</th>
 											<td>
@@ -194,7 +205,8 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
-										<tr >
+
+										<tr id="row_wusb" style="display:none">
 											<th width="50%">USB应用</th>
 											<td>
 													<div class="main_itoggle">
@@ -208,6 +220,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
+
 										<tr >
 											<th width="50%">网络信息</th>
 											<td>
@@ -222,6 +235,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
+
 										<tr >
 											<th width="50%">系统日志</th>
 											<td>
@@ -236,6 +250,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
+
 										<tr id="row_wscu" style="display:none">
 											<th width="50%">Scutclient</th>
 											<td>
@@ -250,7 +265,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
-										
+
 										<tr id="row_wdnsf" style="display:none">
 											<th width="50%" >DNS-forwarder</th>
 											<td>
@@ -265,6 +280,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
+
 										<tr id="row_wss" style="display:none">
 											<th width="50%">科学上网</th>
 											<td>
@@ -279,6 +295,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
+
 										<tr id="row_wmen" style="display:none">
 											<th width="50%" >Mentohust</th>
 											<td>
@@ -293,6 +310,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
+
 										<tr id="row_wadbyby" style="display:none">
 											<th width="50%">广告管理</th>
 											<td>
@@ -307,6 +325,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
+
 										<tr id="row_wpdnsd" style="display:none">
 											<th width="50%" >DNS加速</th>
 											<td>
@@ -321,8 +340,7 @@ function applyRule(){
 												</div>
 											</td>
 										</tr>
-										
-									
+
 											<td colspan="2">
 												<br />
 												<center><input class="btn btn-primary" style="width: 219px" type="button" value="<#CTL_apply#>" onclick="applyRule()" /></center>

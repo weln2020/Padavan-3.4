@@ -160,11 +160,11 @@ function get_system_info() {
 	});
 }
 function bytesToSize(bytes, precision) {
-	var absval = Math.abs(bytes),
-		kilobyte = 1024,
-		megabyte = kilobyte * 1024,
-		gigabyte = megabyte * 1024,
-		terabyte = gigabyte * 1024;
+	var absval = Math.abs(bytes);
+	var kilobyte = 1024;
+	var megabyte = kilobyte * 1024;
+	var gigabyte = megabyte * 1024;
+	var terabyte = gigabyte * 1024;
 	if (absval < kilobyte)
 		return bytes + ' B';
 	else if (absval < megabyte)
@@ -183,8 +183,8 @@ function getLALabelStatus(num) {
 function setSystemInfo(response) {
 	if (typeof (si_new) !== 'object')
 		return;
-	var cpu_now = {},
-		cpu_total = (si_new.cpu.total - sysinfo.cpu.total);
+	var cpu_now = {};
+	var cpu_total = (si_new.cpu.total - sysinfo.cpu.total);
 	if (!cpu_total)
 		cpu_total = 1;
 	cpu_now.busy = parseInt((si_new.cpu.busy - sysinfo.cpu.busy) * 100 / cpu_total);
@@ -199,10 +199,10 @@ function setSystemInfo(response) {
 	showSystemInfo(cpu_now, 1);
 }
 function showSystemInfo(cpu_now, force) {
-	var $j = jQuery.noConflict(),
-		arrLA = sysinfo.lavg.split(' '),
-		h = sysinfo.uptime.hours < 10 ? ('0' + sysinfo.uptime.hours) : sysinfo.uptime.hours,
-		m = sysinfo.uptime.minutes < 10 ? ('0' + sysinfo.uptime.minutes) : sysinfo.uptime.minutes;
+	var $j = jQuery.noConflict();
+	var arrLA = sysinfo.lavg.split(' ');
+	var h = sysinfo.uptime.hours < 10 ? ('0'+sysinfo.uptime.hours) : sysinfo.uptime.hours;
+	var m = sysinfo.uptime.minutes < 10 ? ('0'+sysinfo.uptime.minutes) : sysinfo.uptime.minutes;
 	$j("#la_info").html('<span class="label label-' + getLALabelStatus(arrLA[0]) + '">' + arrLA[0] + '</span>&nbsp;<span class="label label-' + getLALabelStatus(arrLA[1]) + '">' + arrLA[1] + '</span>&nbsp;<span class="label label-' + getLALabelStatus(arrLA[2]) + '">' + arrLA[2] + '</span>');
 	$j("#cpu_info").html(cpu_now.busy + '%');
 	$j("#mem_info").html(bytesToSize(sysinfo.ram.free * 1024, 2) + " / " + bytesToSize(sysinfo.ram.total * 1024, 2));
@@ -260,9 +260,9 @@ var enabledBtnCommit = '<% nvram_match_x("","nvram_manual", "0", "display:none;"
 // L3 = The third Level of Menu
 function show_banner(L3) {
 	var $j = jQuery.noConflict();
-	var bc = '',
-		style_2g = 'width:55px;',
-		style_5g = 'width:55px;';
+	var bc = '';
+	var style_2g = 'width:55px;';
+	var style_5g = 'width:55px;';
 	if (!support_5g_radio()) {
 		style_2g = 'width:114px;';
 		style_5g = 'width:21px;display:none;';
@@ -426,7 +426,6 @@ var tabM1 = [
 	{ "title": "<#menu5_1_5#>", "link": "Advanced_WSecurity_Content.asp" },
 	{ "title": "<#menu5_1_6#>", "link": "Advanced_WAdvanced_Content.asp" }
 ];
-
 var tabM2 = [
 	{ "title": "<#menu5_2_1#>", "link": "Advanced_LAN_Content.asp" },
 	{ "title": "<#menu5_2_2#>", "link": "Advanced_DHCP_Content.asp" },
@@ -872,7 +871,7 @@ function show_footer() {
 	footer_code += '<span>Highcharts by <a href="https://github.com/TorsteinHonsi/Motion-Highcharts-Plugin">Torstein Hønsi</a> & <a href="http://www.highcharts.com">Highsoft</a></span></br>\n';
 	footer_code += '<span>Big icons designed by <a href="http://www.freepik.com">Freepik</a></span></br>\n';
 	footer_code += '<span>Non-Commercial Use Only</span></br>\n';
-	footer_code += '<span>LINUX-3.4 by 恩山论坛: <a href="https://www.right.com.cn/forum/thread-6896728-1-1.html">WELN</a></span></br>\n';
+	footer_code += '<span>恩山论坛发布页: <a href="https://www.right.com.cn/forum/thread-6896728-1-1.html">WELN</a></span></br>\n';
 	footer_code += '</div>\n';
 
 	$j("#footer").html(footer_code);
@@ -1021,16 +1020,16 @@ function hide_adv_info() {
 }
 
 function reset_btn_commit(btn_id) {
-	var $j = jQuery.noConflict(),
-		$btn = $j('#' + btn_id);
+	var $j = jQuery.noConflict();
+	var $btn=$j('#'+btn_id);
 	$btn.removeClass('alert-error').removeClass('alert-success');
 }
 
 function commit() {
 	if (!confirm('<#Commit_confirm#>'))
 		return;
-	var $j = jQuery.noConflict(),
-		$btn = $j('#commit_btn');
+	var $j = jQuery.noConflict();
+	var $btn = $j('#commit_btn');
 	$j.ajax({
 		type: "post",
 		url: "/apply.cgi",
@@ -1111,10 +1110,10 @@ function E(e) {
 }
 
 function getElementsByName_iefix(tag, name) {
-	var tagObjs = document.getElementsByTagName(tag),
-		objsName,
-		targetObjs = [],
-		targetObjs_length;
+	var tagObjs = document.getElementsByTagName(tag);
+	var objsName;
+	var targetObjs = [];
+	var targetObjs_length;
 
 	if (!(typeof (name) == "string" && name.length > 0))
 		return [];
@@ -1161,9 +1160,7 @@ function showtext(obj, str) {
 }
 
 function showhtmlspace(ori_str) {
-	var str = "",
-		head,
-		tail_num;
+	var str = "", head, tail_num;
 
 	head = ori_str;
 	while ((tail_num = head.indexOf(" ")) >= 0) {
@@ -1178,9 +1175,7 @@ function showhtmlspace(ori_str) {
 }
 
 function showhtmland(ori_str) {
-	var str = "",
-		head,
-		tail_num;
+	var str = "", head, tail_num;
 
 	head = ori_str;
 	while ((tail_num = head.indexOf("&")) >= 0) {
@@ -1236,8 +1231,8 @@ function validate_string(string_obj, flag) {
 }
 
 function validate_hex(obj) {
-	var obj_value = obj.value,
-		re = new RegExp("[^a-fA-F0-9]+", "gi");
+	var obj_value = obj.value;
+	var re = new RegExp("[^a-fA-F0-9]+","gi");
 	if (re.test(obj_value))
 		return false;
 	else
@@ -1283,10 +1278,10 @@ function validate_psk(psk_obj) {
 
 function checkDuplicateName(newname, targetArray) {
 	var existing_string = targetArray.join(','),
-		existing_string = "," + existing_string + ",",
-		newstr = "," + trim(newname) + ",",
-		re = new RegExp(newstr, "gi"),
-		matchArray = existing_string.match(re);
+	existing_string = ","+existing_string+",";
+	var newstr = ","+trim(newname)+",";
+	var re = new RegExp(newstr, "gi");
+	var matchArray = existing_string.match(re);
 
 	if (matchArray != null)
 		return true;
@@ -1411,9 +1406,7 @@ function inputCtrl(obj, flag) {
 
 function IsPC() {
 	var userAgentInfo = navigator.userAgent;
-	var Agents = ["Android", "iPhone",
-		"SymbianOS", "Windows Phone",
-		"iPad", "iPod"];
+	var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
 	var flag = true;
 	for (var v = 0; v < Agents.length; v++) {
 		if (userAgentInfo.indexOf(Agents[v]) > 0) {
@@ -1510,8 +1503,8 @@ function setLogData() {
 			$j("#log_area").prop('scrollTop', $j("#log_area").prop('scrollHeight'));
 			$j("#scrATop").val($j("#log_area").prop('scrollTop'));
 		} else {
-			var scrMaxTop = $j("#log_area").prop('scrollHeight'),
-				scrTop = $j("#log_area").prop('scrollTop');
+			var scrMaxTop = $j("#log_area").prop('scrollHeight');
+			var scrTop = $j("#log_area").prop('scrollTop');
 			$j("#log_area").text(data);
 			var scrITop = scrMaxTop - scrTop;
 			if ($j("#scrATop").val() == scrTop || scrITop < 629) {
@@ -1549,8 +1542,8 @@ function onCompleteSlideOutLogArea() {
 }
 
 function passwordShowHide(id) {
-	var obj = $j('#' + id),
-		changeTo = (obj.attr('type') == 'password') ? 'text' : 'password';
+	var obj = $j('#'+id);
+	var changeTo = (obj.attr('type') == 'password') ? 'text' : 'password';
 	if ($j.browser.msie && parseInt($j.browser.version, 10) < 9) {
 		var marker = $j('<span />').insertBefore('#' + id);
 		obj.detach().attr('type', changeTo).insertAfter(marker);
@@ -1614,21 +1607,21 @@ function removeFromLocalStorage(name) {
 	}
 }
 
-//WEB自定义菜单
+//WEB自定义菜单（隐藏不支持项）
 var w_ai = '<% nvram_get_x("", "w_ai"); %>',
-	w_vpn_s = '<% nvram_get_x("", "w_vpn_s"); %>',
-	w_vpn_c = '<% nvram_get_x("", "w_vpn_c"); %>',
-	w_wnet = '<% nvram_get_x("", "w_wnet"); %>',
-	w_sys = '<% nvram_get_x("", "w_sys"); %>',
-	w_usb = '<% nvram_get_x("", "w_usb"); %>',
-	w_net = '<% nvram_get_x("", "w_net"); %>',
-	w_log = '<% nvram_get_x("", "w_log"); %>',
-	w_scu = '<% nvram_get_x("", "w_scu"); %>',
-	w_dnsf = '<% nvram_get_x("", "w_dnsf"); %>',
-	w_ss = '<% nvram_get_x("", "w_ss"); %>',
-	w_men = '<% nvram_get_x("", "w_men"); %>',
-	w_adbyby = '<% nvram_get_x("", "w_adbyby"); %>',
-	w_pdnsd = '<% nvram_get_x("", "w_pdnsd"); %>';
+    w_vpn_s = '<% nvram_get_x("", "w_vpn_s"); %>',
+    w_vpn_c = '<% nvram_get_x("", "w_vpn_c"); %>',
+    w_wnet = '<% nvram_get_x("", "w_wnet"); %>',
+    w_sys = '<% nvram_get_x("", "w_sys"); %>',
+    w_usb = '<% nvram_get_x("", "w_usb"); %>',
+    w_net = '<% nvram_get_x("", "w_net"); %>',
+    w_log = '<% nvram_get_x("", "w_log"); %>',
+    w_scu = '<% nvram_get_x("", "w_scu"); %>',
+    w_dnsf = '<% nvram_get_x("", "w_dnsf"); %>',
+    w_ss = '<% nvram_get_x("", "w_ss"); %>',
+    w_men = '<% nvram_get_x("", "w_men"); %>',
+    w_adbyby = '<% nvram_get_x("", "w_adbyby"); %>',
+    w_pdnsd = '<% nvram_get_x("", "w_pdnsd"); %>';
 
 jQuery.each(menuL1, function (i, m) {
 	var hidden = false;
@@ -1692,7 +1685,7 @@ function mobilestyle() {
 
 	$j = jQuery.noConflict();
 	setTimeout(function () {
-		if ($j(window).width() < 800) {//body 延迟加载
+		if ($j(window).width() < 800) {    //body 延迟加载
 			var qc = "";
 			$j('.table-big tr').each(function () {
 				var o = $j(this);
