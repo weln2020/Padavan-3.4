@@ -160,11 +160,11 @@ function get_system_info() {
 	});
 }
 function bytesToSize(bytes, precision) {
-	var absval = Math.abs(bytes);
-	var kilobyte = 1024;
-	var megabyte = kilobyte * 1024;
-	var gigabyte = megabyte * 1024;
-	var terabyte = gigabyte * 1024;
+	var absval = Math.abs(bytes),
+		kilobyte = 1024,
+		megabyte = kilobyte * 1024,
+		gigabyte = megabyte * 1024,
+		terabyte = gigabyte * 1024;
 	if (absval < kilobyte)
 		return bytes + ' B';
 	else if (absval < megabyte)
@@ -183,8 +183,8 @@ function getLALabelStatus(num) {
 function setSystemInfo(response) {
 	if (typeof (si_new) !== 'object')
 		return;
-	var cpu_now = {};
-	var cpu_total = (si_new.cpu.total - sysinfo.cpu.total);
+	var cpu_now = {},
+		cpu_total = (si_new.cpu.total - sysinfo.cpu.total);
 	if (!cpu_total)
 		cpu_total = 1;
 	cpu_now.busy = parseInt((si_new.cpu.busy - sysinfo.cpu.busy) * 100 / cpu_total);
@@ -199,10 +199,10 @@ function setSystemInfo(response) {
 	showSystemInfo(cpu_now, 1);
 }
 function showSystemInfo(cpu_now, force) {
-	var $j = jQuery.noConflict();
-	var arrLA = sysinfo.lavg.split(' ');
-	var h = sysinfo.uptime.hours < 10 ? ('0'+sysinfo.uptime.hours) : sysinfo.uptime.hours;
-	var m = sysinfo.uptime.minutes < 10 ? ('0'+sysinfo.uptime.minutes) : sysinfo.uptime.minutes;
+	var $j = jQuery.noConflict(),
+		arrLA = sysinfo.lavg.split(' '),
+		h = sysinfo.uptime.hours < 10 ? ('0' + sysinfo.uptime.hours) : sysinfo.uptime.hours,
+		m = sysinfo.uptime.minutes < 10 ? ('0' + sysinfo.uptime.minutes) : sysinfo.uptime.minutes;
 	$j("#la_info").html('<span class="label label-' + getLALabelStatus(arrLA[0]) + '">' + arrLA[0] + '</span>&nbsp;<span class="label label-' + getLALabelStatus(arrLA[1]) + '">' + arrLA[1] + '</span>&nbsp;<span class="label label-' + getLALabelStatus(arrLA[2]) + '">' + arrLA[2] + '</span>');
 	$j("#cpu_info").html(cpu_now.busy + '%');
 	$j("#mem_info").html(bytesToSize(sysinfo.ram.free * 1024, 2) + " / " + bytesToSize(sysinfo.ram.total * 1024, 2));
@@ -234,11 +234,6 @@ function showSystemInfo(cpu_now, force) {
 	else
 		$j('#wifi5_b').removeClass('btn-info');
 
-	if ('<% nvram_get_x("", "sdns_enable"); %>' == '1')
-		$j('#button_script2').addClass('btn-info');
-	else
-		$j('#button_script2').removeClass('btn-info');
-
 	if (parseInt(sysinfo.wifi2.guest) > 0)
 		$j('#wifi2_b_g').addClass('btn-info');
 	else
@@ -265,9 +260,9 @@ var enabledBtnCommit = '<% nvram_match_x("","nvram_manual", "0", "display:none;"
 // L3 = The third Level of Menu
 function show_banner(L3) {
 	var $j = jQuery.noConflict();
-	var bc = '';
-	var style_2g = 'width:55px;';
-	var style_5g = 'width:55px;';
+	var bc = '',
+		style_2g = 'width:55px;',
+		style_5g = 'width:55px;';
 	if (!support_5g_radio()) {
 		style_2g = 'width:114px;';
 		style_5g = 'width:21px;display:none;';
@@ -396,7 +391,7 @@ function show_banner(L3) {
 	bc += '  </tr>\n';
 	bc += '  <tr>\n';
 	bc += '    <td><button type="button" id="commit_btn" class="btn btn-mini" style="width: 114px; height: 21px; outline:0; ' + enabledBtnCommit + '" onclick="commit();"><i class="icon icon-fire"></i>&nbsp;<#CTL_Commit#></button></td>\n';
-	bc += '    <td><button type="button" id="freememory_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#BTN_FREEMEMORY#>" onclick="freememory();"><i class="icon icon-trash"></i></button><button type="button" id="logout_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#t1Logout#>" onclick="logout();"><i class="icon icon-user"></i></button> <button type="button" id="shutdown_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#BTN_SHUTDOWN#>" onclick="shutdown();"><i class="icon icon-off"></i></button> <button type="button" id="reboto_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#BTN_REBOOT#>" onclick="reboot();"><i class="icon icon-repeat"></i></button></td>\n';
+	bc += '    <td><button type="button" id="freememory_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#BTN_FREEMEMORY#>" onclick="freememory();"><i class="icon icon-trash"></i></button><button type="button" id="logout_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#t1Logout#>" onclick="logout();"><i class="icon icon-user"></i></button> <button type="button" id="reboto_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#BTN_REBOOT#>" onclick="reboot();"><i class="icon icon-repeat"></i></button></td>\n';
 	bc += '  </tr>\n';
 	bc += '</table>\n';
 	bc += '</div>\n';
@@ -431,6 +426,7 @@ var tabM1 = [
 	{ "title": "<#menu5_1_5#>", "link": "Advanced_WSecurity_Content.asp" },
 	{ "title": "<#menu5_1_6#>", "link": "Advanced_WAdvanced_Content.asp" }
 ];
+
 var tabM2 = [
 	{ "title": "<#menu5_2_1#>", "link": "Advanced_LAN_Content.asp" },
 	{ "title": "<#menu5_2_2#>", "link": "Advanced_DHCP_Content.asp" },
@@ -472,11 +468,13 @@ var tabM7 = [
 	{ "title": "<#menu5_10_1#>", "link": "Advanced_Tweaks_Content.asp" },
 	{ "title": "<#menu5_10_2#>", "link": "Advanced_Scripts_Content.asp" },
 	{ "title": "<#menu5_10_3#>", "link": "Advanced_InetDetect_Content.asp" }
-	{ "title": "<#menu5_22_1#>", "link": "Advanced_web.asp" }
 ];
 var tabM8 = [
 	{ "title": "<#menu5_11#>", "link": "Main_WStatus2g_Content.asp" },
 	{ "title": "<#menu5_12#>", "link": "Main_WStatus_Content.asp" },
+	{ "title": "", "link": "" },
+	{ "title": "", "link": "" },
+	{ "title": "", "link": "" },
 	{ "title": "", "link": "" },
 	{ "title": "", "link": "" },
 	{ "title": "", "link": "" },
@@ -503,7 +501,7 @@ tabMenuHash.put('9', tabM8);
 tabMenuHash.put('10', tabM9);
 
 //Level 1 Menu in Gateway, Router mode
-//生成子菜单，L1 sub 与 L2 sub对应
+//生成子菜单 /L1 sub 与 L2 sub对应
 var menuL1 = [
 	{ "title": "<#menu1#>", "link": "index.asp", "icon": "icon-home" }
 ];
@@ -517,7 +515,7 @@ menuL1.push({ "title": "<#menu4#>", "link": "Main_TrafficMonitor_realtime.asp", 
 menuL1.push({ "title": "<#menu5_8#>", "link": "Advanced_System_Info.asp", "icon": "icon-random" });
 menuL1.push({ "title": "<#menu5#>", "link": "as.asp", "icon": "icon-wrench" });
 
-//Level 2 Menu Setting
+//Level 2 Menu
 //sub 与 L1的sub 对应，自动显示到L1下面
 var menuL2 = [
 	{ "title": "<#menu5_11#>", "link": tabMenuHash.get('1')[0].link, index: "1" },
@@ -532,8 +530,7 @@ var menuL2 = [
 	{ "title": "<#menu5_7#>", "link": tabMenuHash.get('10')[0].link, index: "10" }
 ];
 
-//Level 3 Tab title
-/* plugin menu 插件菜单 开始 */
+/* plugin menu 插件菜单 */
 if (found_app_scutclient()) {
 	var mx = { "title": "<#menu5_13#>", "link": "scutclient.asp", index: "11" };//json格式
 	var mx2 = [mx, { "title": "<#menu5_13_log#>", "link": "scutclient_log.asp" }];//显示tab，多个页面
@@ -618,12 +615,14 @@ if (!found_app_aliddns() && !found_app_ddnsto() && !found_app_zerotier() && foun
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
+
 if (found_app_aliddns() && found_app_ddnsto() && !found_app_zerotier() && !found_app_wireguard()) {
 	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" };
 	var mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_2", "link": "Advanced_ddnsto.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
+
 if (found_app_aliddns() && !found_app_ddnsto() && found_app_zerotier() && !found_app_wireguard()) {
 	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" };
 	var mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }];
@@ -636,6 +635,7 @@ if (found_app_aliddns() && !found_app_ddnsto() && !found_app_zerotier() && found
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
+
 if (!found_app_aliddns() && found_app_ddnsto() && found_app_zerotier() && !found_app_wireguard()) {
 	var mx = { "title": "<#menu5_30#>", "link": "Advanced_ddnsto.asp", index: "17" };
 	var mx2 = [{ "title": "<#menu5_32_2#>", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }];
@@ -654,6 +654,7 @@ if (!found_app_aliddns() && !found_app_ddnsto() && found_app_zerotier() && found
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
+
 if (found_app_aliddns() && found_app_ddnsto() && found_app_zerotier() && !found_app_wireguard()) {
 	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" };
 	var mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_2", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }];
@@ -704,8 +705,7 @@ if (found_app_aldriver()) {
 }
 /* plugin menu 插件菜单 结束*/
 
-// 旧代码兼容：as.asp
-/* menu compatibility start */
+/* 旧代码兼容/as.asp menu compatibility start */
 var menuL2_title = [];
 var menuL2_link = [];
 var tabtitle = [];
@@ -713,7 +713,8 @@ var tablink = [];
 /* menu compatibility end */
 
 function show_menu(L1, L2, L3) {
-	var $j = jQuery.noConflict(), i;
+	var $j = jQuery.noConflict(),
+	 	i;
 	if (sw_mode == '3') {
 		//AP模式
 		tabMenuHash.get('3').splice(2, 1);//Remove GWStaticRoute tab menu of LAN Menu
@@ -721,15 +722,10 @@ function show_menu(L1, L2, L3) {
 		tabMenuHash.get('5').splice(0);//Clear All tabmenus of Firewall Menu
 		tabMenuHash.get('6').splice(3, 1);//Remove Modem tab menu of USBApp Menu
 		tabMenuHash.get('10').splice(1, 4);//Remain LogStatus tab menu of Log Menu
-		menuL2[3].link = '';//remove WAN
-		menuL2[3].title = '';//remove WAN Menu
-		menuL2[4].link = '';//remove Firewall
-		menuL2[4].title = '';//remove Firewall Menu
-		menuL1[2].link = '';//remove VPN svr
-		menuL1[2].title = '';//remove VPN svr Menu
-		menuL1[3].link = '';//remove VPN cli
-		menuL1[3].title = '';//remove VPN cli Menu
-
+		menuL2[3].link = ''; //remove WAN Menu
+		menuL2[3].title = ''; //remove WAN Menu
+		menuL2[4].link = ''; //remove Firewall Menu
+		menuL2[4].title = ''; //remove Firewall Menu
 		if (lan_proto == '1') {
 			tabMenuHash.get('3').splice(1, 1);//Remove DHCP tab menu of LAN Menu
 		}
@@ -745,7 +741,6 @@ function show_menu(L1, L2, L3) {
 			tabMenuHash.get('4').splice(1, 1);//Remove IPV6 tab menu from WAN Menu
 		}
 	}
-
 	//LAN编号 网络信息页
 	var num_ephy = support_num_ephy();
 	if (num_ephy < 2)
@@ -795,7 +790,6 @@ function show_menu(L1, L2, L3) {
 			tabMenuHash.get('6').splice(2, 1);
 		}
 	}
-
 	//L1
 	var navL1 = "";
 	for (var i = 0; i < menuL1.length; i++) {
@@ -878,10 +872,9 @@ function show_footer() {
 	var footer_code = '<div align="center" class="bottom-image"></div>\n';
 	footer_code += '<div align="center" class="copyright"><#footer_copyright_desc#></div>\n';
 	footer_code += '<div align="center">\n';
-	footer_code += '<span>Highcharts by <a href="https://github.com/TorsteinHonsi/Motion-Highcharts-Plugin">Torstein Hønsi</a> & <a href="http://www.highcharts.com">Highsoft</a></span></br>\n';
-	footer_code += '<span>Big icons designed by <a href="http://www.freepik.com">Freepik</a></span></br>\n';
-	footer_code += '<span>Non-Commercial Use Only</span></br>\n';
-	footer_code += '<span>LINUX-3.4 by 恩山论坛: <a href="https://www.right.com.cn/forum/thread-6896728-1-1.html">WELN</a></span></br>\n';
+	footer_code += '  <span>Highcharts by Torstein Hønsi & <a href="http://www.highcharts.com">Highsoft</a></span></br>\n';
+	footer_code += '  <span>Big icons designed by <a href="http://www.freepik.com">Freepik</a></br></span>\n';
+	footer_code += '  <span>Non-Commercial Use Only</span></br>\n';
 	footer_code += '</div>\n';
 
 	$j("#footer").html(footer_code);
@@ -994,7 +987,7 @@ function reboot() {
 		});
 }
 
-function shutdown() {
+/*function shutdown() {
 	if (!confirm('<#JS_shutdown#>'))
 		return;
 	var $j = jQuery.noConflict();
@@ -1003,7 +996,7 @@ function shutdown() {
 			'action_mode': ' Shutdown ',
 			'current_page': 'Main_LogStatus_Content.asp'
 		});
-}
+}*/
 
 function freememory(){
 	var $j = jQuery.noConflict();
@@ -1030,16 +1023,16 @@ function hide_adv_info() {
 }
 
 function reset_btn_commit(btn_id) {
-	var $j = jQuery.noConflict();
-	var $btn=$j('#'+btn_id);
+	var $j = jQuery.noConflict(),
+		$btn = $j('#' + btn_id);
 	$btn.removeClass('alert-error').removeClass('alert-success');
 }
 
 function commit() {
 	if (!confirm('<#Commit_confirm#>'))
 		return;
-	var $j = jQuery.noConflict();
-	var $btn = $j('#commit_btn');
+	var $j = jQuery.noConflict(),
+		$btn = $j('#commit_btn');
 	$j.ajax({
 		type: "post",
 		url: "/apply.cgi",
@@ -1120,10 +1113,10 @@ function E(e) {
 }
 
 function getElementsByName_iefix(tag, name) {
-	var tagObjs = document.getElementsByTagName(tag);
-	var objsName;
-	var targetObjs = [];
-	var targetObjs_length;
+	var tagObjs = document.getElementsByTagName(tag),
+		objsName,
+		targetObjs = [],
+		targetObjs_length;
 
 	if (!(typeof (name) == "string" && name.length > 0))
 		return [];
@@ -1170,7 +1163,9 @@ function showtext(obj, str) {
 }
 
 function showhtmlspace(ori_str) {
-	var str = "", head, tail_num;
+	var str = "",
+		head,
+		tail_num;
 
 	head = ori_str;
 	while ((tail_num = head.indexOf(" ")) >= 0) {
@@ -1185,7 +1180,9 @@ function showhtmlspace(ori_str) {
 }
 
 function showhtmland(ori_str) {
-	var str = "", head, tail_num;
+	var str = "",
+		head,
+		tail_num;
 
 	head = ori_str;
 	while ((tail_num = head.indexOf("&")) >= 0) {
@@ -1241,8 +1238,8 @@ function validate_string(string_obj, flag) {
 }
 
 function validate_hex(obj) {
-	var obj_value = obj.value;
-	var re = new RegExp("[^a-fA-F0-9]+","gi");
+	var obj_value = obj.value,
+		re = new RegExp("[^a-fA-F0-9]+", "gi");
 	if (re.test(obj_value))
 		return false;
 	else
@@ -1287,11 +1284,11 @@ function validate_psk(psk_obj) {
 }
 
 function checkDuplicateName(newname, targetArray) {
-	var existing_string = targetArray.join(',');
-	existing_string = ","+existing_string+",";
-	var newstr = ","+trim(newname)+",";
-	var re = new RegExp(newstr, "gi");
-	var matchArray = existing_string.match(re);
+	var existing_string = targetArray.join(','),
+		existing_string = "," + existing_string + ",",
+		newstr = "," + trim(newname) + ",",
+		re = new RegExp(newstr, "gi"),
+		matchArray = existing_string.match(re);
 
 	if (matchArray != null)
 		return true;
@@ -1416,7 +1413,9 @@ function inputCtrl(obj, flag) {
 
 function IsPC() {
 	var userAgentInfo = navigator.userAgent;
-	var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+	var Agents = ["Android", "iPhone",
+		"SymbianOS", "Windows Phone",
+		"iPad", "iPod"];
 	var flag = true;
 	for (var v = 0; v < Agents.length; v++) {
 		if (userAgentInfo.indexOf(Agents[v]) > 0) {
@@ -1513,8 +1512,8 @@ function setLogData() {
 			$j("#log_area").prop('scrollTop', $j("#log_area").prop('scrollHeight'));
 			$j("#scrATop").val($j("#log_area").prop('scrollTop'));
 		} else {
-			var scrMaxTop = $j("#log_area").prop('scrollHeight');
-			var scrTop = $j("#log_area").prop('scrollTop');
+			var scrMaxTop = $j("#log_area").prop('scrollHeight'),
+				scrTop = $j("#log_area").prop('scrollTop');
 			$j("#log_area").text(data);
 			var scrITop = scrMaxTop - scrTop;
 			if ($j("#scrATop").val() == scrTop || scrITop < 629) {
@@ -1552,8 +1551,8 @@ function onCompleteSlideOutLogArea() {
 }
 
 function passwordShowHide(id) {
-	var obj = $j('#'+id);
-	var changeTo = (obj.attr('type') == 'password') ? 'text' : 'password';
+	var obj = $j('#' + id),
+		changeTo = (obj.attr('type') == 'password') ? 'text' : 'password';
 	if ($j.browser.msie && parseInt($j.browser.version, 10) < 9) {
 		var marker = $j('<span />').insertBefore('#' + id);
 		obj.detach().attr('type', changeTo).insertAfter(marker);
@@ -1619,19 +1618,19 @@ function removeFromLocalStorage(name) {
 
 //WEB自定义菜单
 var w_ai = '<% nvram_get_x("", "w_ai"); %>',
-    w_vpn_s = '<% nvram_get_x("", "w_vpn_s"); %>',
-    w_vpn_c = '<% nvram_get_x("", "w_vpn_c"); %>',
-    w_wnet = '<% nvram_get_x("", "w_wnet"); %>',
-    w_sys = '<% nvram_get_x("", "w_sys"); %>',
-    w_usb = '<% nvram_get_x("", "w_usb"); %>',
-    w_net = '<% nvram_get_x("", "w_net"); %>',
-    w_log = '<% nvram_get_x("", "w_log"); %>',
-    w_scu = '<% nvram_get_x("", "w_scu"); %>',
-    w_dnsf = '<% nvram_get_x("", "w_dnsf"); %>',
-    w_ss = '<% nvram_get_x("", "w_ss"); %>',
-    w_men = '<% nvram_get_x("", "w_men"); %>',
-    w_adbyby = '<% nvram_get_x("", "w_adbyby"); %>',
-    w_pdnsd = '<% nvram_get_x("", "w_pdnsd"); %>';
+	w_vpn_s = '<% nvram_get_x("", "w_vpn_s"); %>',
+	w_vpn_c = '<% nvram_get_x("", "w_vpn_c"); %>',
+	w_wnet = '<% nvram_get_x("", "w_wnet"); %>',
+	w_sys = '<% nvram_get_x("", "w_sys"); %>',
+	w_usb = '<% nvram_get_x("", "w_usb"); %>',
+	w_net = '<% nvram_get_x("", "w_net"); %>',
+	w_log = '<% nvram_get_x("", "w_log"); %>',
+	w_scu = '<% nvram_get_x("", "w_scu"); %>',
+	w_dnsf = '<% nvram_get_x("", "w_dnsf"); %>',
+	w_ss = '<% nvram_get_x("", "w_ss"); %>',
+	w_men = '<% nvram_get_x("", "w_men"); %>',
+	w_adbyby = '<% nvram_get_x("", "w_adbyby"); %>',
+	w_pdnsd = '<% nvram_get_x("", "w_pdnsd"); %>';
 
 jQuery.each(menuL1, function (i, m) {
 	var hidden = false;
@@ -1695,7 +1694,7 @@ function mobilestyle() {
 
 	$j = jQuery.noConflict();
 	setTimeout(function () {
-		if ($j(window).width() < 800) {//body 延迟加载
+		if ($j(window).width() < 800) {//body 加载晚
 			var qc = "";
 			$j('.table-big tr').each(function () {
 				var o = $j(this);
