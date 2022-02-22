@@ -391,7 +391,7 @@ function show_banner(L3) {
 	bc += '  </tr>\n';
 	bc += '  <tr>\n';
 	bc += '    <td><button type="button" id="commit_btn" class="btn btn-mini" style="width: 114px; height: 21px; outline:0; ' + enabledBtnCommit + '" onclick="commit();"><i class="icon icon-fire"></i>&nbsp;<#CTL_Commit#></button></td>\n';
-	bc += '    <td><button type="button" id="freememory_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#BTN_FREEMEMORY#>" onclick="freememory();"><i class="icon icon-trash"></i></button><button type="button" id="logout_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#t1Logout#>" onclick="logout();"><i class="icon icon-user"></i></button> <button type="button" id="reboto_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#BTN_REBOOT#>" onclick="reboot();"><i class="icon icon-repeat"></i></button></td>\n';
+	bc += '    <td><button type="button" id="freememory_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#BTN_FREEMEMORY#>" onclick="freememory();"><i class="icon icon-trash"></i></button><button type="button" id="logout_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#t1Logout#>" onclick="logout();"><i class="icon icon-user"></i></button> <button type="button" id="shutdown_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#BTN_SHUTDOWN#>" onclick="shutdown();"><i class="icon icon-off"></i></button> <button type="button" id="reboto_btn" class="btn btn-mini" style="height: 21px; outline:0;" title="<#BTN_REBOOT#>" onclick="reboot();"><i class="icon icon-repeat"></i></button></td>\n';
 	bc += '  </tr>\n';
 	bc += '</table>\n';
 	bc += '</div>\n';
@@ -467,14 +467,12 @@ var tabM6 = [
 var tabM7 = [
 	{ "title": "<#menu5_10_1#>", "link": "Advanced_Tweaks_Content.asp" },
 	{ "title": "<#menu5_10_2#>", "link": "Advanced_Scripts_Content.asp" },
-	{ "title": "<#menu5_10_3#>", "link": "Advanced_InetDetect_Content.asp" }
+	{ "title": "<#menu5_10_3#>", "link": "Advanced_InetDetect_Content.asp" },
+	{ "title": "<#menu5_22_1#>", "link": "Advanced_web.asp" }
 ];
 var tabM8 = [
 	{ "title": "<#menu5_11#>", "link": "Main_WStatus2g_Content.asp" },
 	{ "title": "<#menu5_12#>", "link": "Main_WStatus_Content.asp" },
-	{ "title": "", "link": "" },
-	{ "title": "", "link": "" },
-	{ "title": "", "link": "" },
 	{ "title": "", "link": "" },
 	{ "title": "", "link": "" },
 	{ "title": "", "link": "" },
@@ -501,7 +499,7 @@ tabMenuHash.put('9', tabM8);
 tabMenuHash.put('10', tabM9);
 
 //Level 1 Menu in Gateway, Router mode
-//生成子菜单 /L1 sub 与 L2 sub对应
+//生成子菜单，L1 sub 与 L2 sub对应
 var menuL1 = [
 	{ "title": "<#menu1#>", "link": "index.asp", "icon": "icon-home" }
 ];
@@ -515,7 +513,7 @@ menuL1.push({ "title": "<#menu4#>", "link": "Main_TrafficMonitor_realtime.asp", 
 menuL1.push({ "title": "<#menu5_8#>", "link": "Advanced_System_Info.asp", "icon": "icon-random" });
 menuL1.push({ "title": "<#menu5#>", "link": "as.asp", "icon": "icon-wrench" });
 
-//Level 2 Menu
+//Level 2 Menu Setting
 //sub 与 L1的sub 对应，自动显示到L1下面
 var menuL2 = [
 	{ "title": "<#menu5_11#>", "link": tabMenuHash.get('1')[0].link, index: "1" },
@@ -530,7 +528,8 @@ var menuL2 = [
 	{ "title": "<#menu5_7#>", "link": tabMenuHash.get('10')[0].link, index: "10" }
 ];
 
-/* plugin menu 插件菜单 */
+//Level 3 Tab title
+/* plugin menu 插件菜单 开始 */
 if (found_app_scutclient()) {
 	var mx = { "title": "<#menu5_13#>", "link": "scutclient.asp", index: "11" };//json格式
 	var mx2 = [mx, { "title": "<#menu5_13_log#>", "link": "scutclient_log.asp" }];//显示tab，多个页面
@@ -615,14 +614,12 @@ if (!found_app_aliddns() && !found_app_ddnsto() && !found_app_zerotier() && foun
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
-
 if (found_app_aliddns() && found_app_ddnsto() && !found_app_zerotier() && !found_app_wireguard()) {
 	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" };
 	var mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_2", "link": "Advanced_ddnsto.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
-
 if (found_app_aliddns() && !found_app_ddnsto() && found_app_zerotier() && !found_app_wireguard()) {
 	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" };
 	var mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }];
@@ -635,7 +632,6 @@ if (found_app_aliddns() && !found_app_ddnsto() && !found_app_zerotier() && found
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
-
 if (!found_app_aliddns() && found_app_ddnsto() && found_app_zerotier() && !found_app_wireguard()) {
 	var mx = { "title": "<#menu5_30#>", "link": "Advanced_ddnsto.asp", index: "17" };
 	var mx2 = [{ "title": "<#menu5_32_2#>", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }];
@@ -654,7 +650,6 @@ if (!found_app_aliddns() && !found_app_ddnsto() && found_app_zerotier() && found
 	menuL2.push(mx);
 	tabMenuHash.put('17', mx2);
 }
-
 if (found_app_aliddns() && found_app_ddnsto() && found_app_zerotier() && !found_app_wireguard()) {
 	var mx = { "title": "<#menu5_30#>", "link": "Advanced_aliddns.asp", index: "17" };
 	var mx2 = [{ "title": "<#menu5_23_1#>", "link": "Advanced_aliddns.asp" }, { "title": "menu5_32_2", "link": "Advanced_ddnsto.asp" }, { "title": "menu5_32_1", "link": "Advanced_zerotier.asp" }];
@@ -705,7 +700,8 @@ if (found_app_aldriver()) {
 }
 /* plugin menu 插件菜单 结束*/
 
-/* 旧代码兼容/as.asp menu compatibility start */
+// 旧代码兼容：as.asp
+/* menu compatibility start */
 var menuL2_title = [];
 var menuL2_link = [];
 var tabtitle = [];
@@ -713,8 +709,7 @@ var tablink = [];
 /* menu compatibility end */
 
 function show_menu(L1, L2, L3) {
-	var $j = jQuery.noConflict(),
-	 	i;
+	var $j = jQuery.noConflict(), i;
 	if (sw_mode == '3') {
 		//AP模式
 		tabMenuHash.get('3').splice(2, 1);//Remove GWStaticRoute tab menu of LAN Menu
@@ -741,6 +736,7 @@ function show_menu(L1, L2, L3) {
 			tabMenuHash.get('4').splice(1, 1);//Remove IPV6 tab menu from WAN Menu
 		}
 	}
+
 	//LAN编号 网络信息页
 	var num_ephy = support_num_ephy();
 	if (num_ephy < 2)
@@ -790,6 +786,7 @@ function show_menu(L1, L2, L3) {
 			tabMenuHash.get('6').splice(2, 1);
 		}
 	}
+
 	//L1
 	var navL1 = "";
 	for (var i = 0; i < menuL1.length; i++) {
@@ -872,9 +869,10 @@ function show_footer() {
 	var footer_code = '<div align="center" class="bottom-image"></div>\n';
 	footer_code += '<div align="center" class="copyright"><#footer_copyright_desc#></div>\n';
 	footer_code += '<div align="center">\n';
-	footer_code += '  <span>Highcharts by Torstein Hønsi & <a href="http://www.highcharts.com">Highsoft</a></span></br>\n';
-	footer_code += '  <span>Big icons designed by <a href="http://www.freepik.com">Freepik</a></br></span>\n';
-	footer_code += '  <span>Non-Commercial Use Only</span></br>\n';
+	footer_code += '<span>Highcharts by <a href="https://github.com/TorsteinHonsi/Motion-Highcharts-Plugin">Torstein Hønsi</a> & <a href="http://www.highcharts.com">Highsoft</a></span></br>\n';
+	footer_code += '<span>Big icons designed by <a href="http://www.freepik.com">Freepik</a></span></br>\n';
+	footer_code += '<span>Non-Commercial Use Only</span></br>\n';
+	footer_code += '<span>LINUX-3.4 by 恩山论坛: <a href="https://www.right.com.cn/forum/thread-6896728-1-1.html">WELN</a></span></br>\n';
 	footer_code += '</div>\n';
 
 	$j("#footer").html(footer_code);
@@ -987,7 +985,7 @@ function reboot() {
 		});
 }
 
-/*function shutdown() {
+function shutdown() {
 	if (!confirm('<#JS_shutdown#>'))
 		return;
 	var $j = jQuery.noConflict();
@@ -996,7 +994,7 @@ function reboot() {
 			'action_mode': ' Shutdown ',
 			'current_page': 'Main_LogStatus_Content.asp'
 		});
-}*/
+}
 
 function freememory(){
 	var $j = jQuery.noConflict();
@@ -1694,7 +1692,7 @@ function mobilestyle() {
 
 	$j = jQuery.noConflict();
 	setTimeout(function () {
-		if ($j(window).width() < 800) {//body 加载晚
+		if ($j(window).width() < 800) {//body 延迟加载
 			var qc = "";
 			$j('.table-big tr').each(function () {
 				var o = $j(this);
