@@ -3,11 +3,6 @@ name: MSG1500-7615
 on:
   release:
     types: [published]
-  watch:
-    types: [started]
-  push:
-    tags:
-    - 'v*'
 
 env:
   TNAME: "MSG1500-7615"
