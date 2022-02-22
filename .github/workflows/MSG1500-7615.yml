@@ -1,6 +1,8 @@
 name: MSG1500-7615
 
-on: 
+on:
+  release:
+    types: [published]
   #watch:
     #types: [started]
   #push:
