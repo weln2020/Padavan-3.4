@@ -21,7 +21,8 @@ jobs:
     - name: 编译工具链
       run: |
         mkdir -p opt/images
-        sh toolchain-mipsel/dl_toolchain.sh
+        cd toolchain-mipsel
+        sh dl_toolchain.sh
     - name: 开始编译
       run: |
         cd trunk
