@@ -1,4 +1,4 @@
-name: PadavanÊÖ¶¯ÔÆ±àÒë
+name: Padavanæ‰‹åŠ¨äº‘ç¼–è¯‘
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       production:
-        description: ÉèÖÃ¹Ì¼þÐÍºÅ£º
+        description: è®¾ç½®å›ºä»¶åž‹å·ï¼š
         default: "K2P MSG1500-7615 NEWIFI3 PSG1218"
         required: false
 
@@ -14,24 +14,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Í¬²½Ö÷´æ´¢¿â
+    - name: åŒæ­¥ä¸»å­˜å‚¨åº“
       uses: actions/checkout@v2
-    - name: ³õÊ¼»·¾³ÉèÖÃ
+    - name: åˆå§‹çŽ¯å¢ƒè®¾ç½®
       run: |
           sudo apt update
           sudo apt install libtool-bin gperf python3-docutils autopoint gettext
-    - name: ±àÒë¹¤¾ßÁ´
+    - name: ç¼–è¯‘å·¥å…·é“¾
       run: |
-        mkdir -p opt/images
+        mkdir -p /opt/images
         sh ./trunk/tools/shellcheck.sh
         sh ./toolchain-mipsel/dl_toolchain.sh
-    - name: ¿ªÊ¼±àÒë
+    - name: å¼€å§‹ç¼–è¯‘
       run: |
         cd trunk
         for m in ${{ github.event.inputs.production }}; do fakeroot ./build_firmware_ci $m; \
         if [ $? = 0 ]; then cp -f images/*.trx /opt/images; else exit 1; fi; \
         ./clear_tree_simple >/dev/null 2>&1; done
-    - name: ÉÏ´«¹Ì¼þµ½Artifacts
+    - name: ä¸Šä¼ å›ºä»¶åˆ°Artifacts
       uses: actions/upload-artifact@v2.2.1
       with:
         name: Padavan-3.4
