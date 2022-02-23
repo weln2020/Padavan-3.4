@@ -1,8 +1,6 @@
 name: Padavan手动云编译
 
 on:
-  push:
-  pull_request:
   workflow_dispatch:
     inputs:
       production:
