@@ -25,7 +25,8 @@ jobs:
         cd trunk && for m in ${{ github.event.inputs.production }};
         do fakeroot ./build_firmware_ci $m;
         ls -l images;
-        cp -f images/*.trx /opt/images;
+        mv -f images/*.trx /opt/images;
+        ls -l images;
         ./clear_tree_simple >/dev/null 2>&1;
     - name: 上传到Artifacts
       uses: actions/upload-artifact@v2.2.1
