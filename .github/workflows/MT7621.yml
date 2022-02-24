@@ -5,7 +5,7 @@ on:
     inputs:
       production:
         description: 设置固件型号(用空格分开)：
-        default: "K2P MSG1500-7615 NEWIFI3 PSG1218"
+        default: "K2P MSG1500-7615 NEWIFI3"
         required: false
 
 jobs:
