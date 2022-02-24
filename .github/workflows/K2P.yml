@@ -24,6 +24,7 @@ jobs:
         
     - name: Build Firmware
       run: |
+        cp -f configs/templates/$TNAME.config .config
         cd trunk
         sudo ./build_firmware_ci $TNAME 0
         sudo cp -f images/*.trx opt/images
