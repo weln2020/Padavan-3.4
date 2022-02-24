@@ -1,6 +1,5 @@
 name: Padavan
 on: 
-  pull_request:
   workflow_dispatch:
 
 env:
@@ -10,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
+
       uses: actions/checkout@v2
     - name: Initialization environment
       run: |
@@ -25,9 +25,9 @@ jobs:
     - name: Build Firmware
       run: |
         cd trunk
-        sudo ./clear_tree_simple
         sudo ./build_firmware_ci $TNAME 0
         sudo cp -f images/*.trx opt/images
+        sudo ./clear_tree_simple
         
     - name : Upload Packages
       uses: actions/upload-artifact@v2.2.1
