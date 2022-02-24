@@ -13,22 +13,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 同步主存储库
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2.1.0
     - name: 初始环境设置
-      run: |
-          sudo apt update
-          sudo apt install libtool-bin gperf python3-docutils autopoint gettext
+      run: |   
+        sudo apt update && sudo apt install libtool-bin gperf python3-docutils autopoint gettext
     - name: 编译工具链
       run: |
-        mkdir -p /opt/images
-        sh ./trunk/tools/shellcheck.sh
-        cd toolchain-mipsel
-        sh dl_toolchain.sh
+        mkdir -p /opt/images && sh ./trunk/tools/shellcheck.sh && cd toolchain-mipsel && sh dl_toolchain.sh
     - name: 开始编译
       run: |
         cd trunk
-        for m in ${{ github.event.inputs.production }}; do fakeroot ./build_firmware_ci $m; \
-        cp -f images/*.trx /opt/images; ./clear_tree_simple >/dev/null 2>&1; done
+        for m in ${{ github.event.inputs.production }}; do fakeroot ./build_firmware_ci $m; cp -f images/*.trx /opt/images; ./clear_tree_simple >/dev/null 2>&1; done
     - name: 上传固件到Artifacts
       uses: actions/upload-artifact@v2.2.1
       with:
