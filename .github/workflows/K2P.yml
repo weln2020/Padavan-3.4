@@ -1,0 +1,36 @@
+name: Padavan
+on: 
+  pull_request:
+  workflow_dispatch:
+
+env:
+  TNAME: "K2P"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Initialization environment
+      run: |
+        sudo apt update
+        sudo apt install libtool-bin gperf python3-docutils autopoint gettext
+        
+    - name: Build Toolchain
+      run: |
+        mkdir -p opt/images
+        sh ./trunk/tools/shellcheck.sh
+        sh ./toolchain-mipsel/dl_toolchain.sh
+        
+    - name: Build Firmware
+      run: |
+        cd trunk
+        sudo ./clear_tree_simple
+        sudo ./build_firmware_ci $TNAME 0
+        sudo cp -f images/*.trx opt/images
+        
+    - name : Upload Packages
+      uses: actions/upload-artifact@v2.2.1
+      with:
+        name: ${{ env.TNAME }}
+        path: opt/images
