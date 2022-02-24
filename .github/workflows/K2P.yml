@@ -5,10 +5,10 @@ env:
   TNAME: "K2P"
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@master
 
     - name: Initialization environment
       run: |
@@ -21,19 +21,21 @@ jobs:
     - name: Build Toolchain
       run: |
         mkdir -p opt/images
-        sh ./trunk/tools/shellcheck.sh
-        sh ./toolchain-mipsel/dl_toolchain.sh
+        cd toolchain-mipsel
+        sh dl_toolchain.sh
+        #sh ./trunk/tools/shellcheck.sh
+        #sh ./toolchain-mipsel/dl_toolchain.sh
         
     - name: Build Firmware
       run: |
         cd trunk
-        cp -f configs/templates/$TNAME.config .config
+        #cp -f configs/templates/$TNAME.config .config
         sudo ./build_firmware_modify $TNAME 0
         sudo cp -f images/*.trx opt/images
         sudo ./clear_tree_simple
         
     - name : Upload Packages
-      uses: actions/upload-artifact@v2.2.1
+      uses: actions/upload-artifact@master
       with:
         name: ${{ env.TNAME }}
         path: opt/images
