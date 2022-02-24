@@ -1,7 +1,6 @@
 name: Padavan
 on: 
   workflow_dispatch:
-
 env:
   TNAME: "K2P"
 jobs:
@@ -9,12 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-
       uses: actions/checkout@v2
+
     - name: Initialization environment
       run: |
-        sudo apt update
-        sudo apt install libtool-bin gperf python3-docutils autopoint gettext
+        sudo apt-get update
+        sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
+        fakeroot kmod cpio git python3-docutils gettext automake autopoint \
+        texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
+        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin > /dev/null
         
     - name: Build Toolchain
       run: |
@@ -25,7 +27,7 @@ jobs:
     - name: Build Firmware
       run: |
         cd trunk
-        cp -f configs/templates/$TNAME.config .config
+        #cp -f configs/templates/$TNAME.config .config
         sudo ./build_firmware_modify $TNAME 0
         sudo cp -f images/*.trx opt/images
         sudo ./clear_tree_simple
