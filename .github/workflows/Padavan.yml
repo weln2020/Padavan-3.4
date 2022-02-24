@@ -1,7 +1,6 @@
 name: Padavan手动云编译
 
 on:
-  push:
   pull_request:
   workflow_dispatch:
     inputs:
@@ -22,14 +21,14 @@ jobs:
           sudo apt install libtool-bin gperf python3-docutils autopoint gettext
     - name: 编译工具链
       run: |
-        mkdir -p /opt/images
+        mkdir -p opt/images
         sh ./trunk/tools/shellcheck.sh
         sh ./toolchain-mipsel/dl_toolchain.sh
     - name: 开始编译
       run: |
         cd trunk
         for m in ${{ github.event.inputs.production }}; do fakeroot ./build_firmware_ci $m; \
-        if [ $? = 0 ]; then cp -f images/*.trx /opt/images; else exit 1; fi; \
+        if [ $? = 0 ]; then cp -f images/*.trx opt/images; else exit 1; fi; \
         ./clear_tree_simple >/dev/null 2>&1; done
     - name: 上传固件到Artifacts
       uses: actions/upload-artifact@v2.2.1
