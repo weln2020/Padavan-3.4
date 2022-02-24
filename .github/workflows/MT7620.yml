@@ -1,0 +1,31 @@
+name: MT7620云编译
+
+on:
+  workflow_dispatch:
+    inputs:
+      production:
+        description: 设置固件型号(用空格分开)：
+        default: "PSG1218"
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 同步主存储库
+      uses: actions/checkout@v2.1.0
+    - name: 初始环境设置
+      run: |   
+        sudo apt update && sudo apt install libtool-bin gperf python3-docutils autopoint gettext
+    - name: 准备工具链
+      run: |
+        mkdir -p /opt/images && sh ./trunk/tools/shellcheck.sh && cd toolchain-mipsel && sh dl_toolchain.sh
+    - name: 开始编译
+      run: |
+        cd trunk && for m in ${{ github.event.inputs.production }}; do fakeroot ./build_firmware_ci $m;
+        mv -f images/*.trx /opt/images; ./clear_tree_simple >/dev/null 2>&1; done
+    - name: 上传到Artifacts
+      uses: actions/upload-artifact@v2.2.1
+      with:
+        name: Padavan-3.4
+        path: /opt/images
