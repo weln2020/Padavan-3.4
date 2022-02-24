@@ -26,7 +26,7 @@ jobs:
       run: |
         cd trunk
         cp -f configs/templates/$TNAME.config .config
-        sudo ./build_firmware_ci $TNAME 0
+        sudo ./build_firmware_modify $TNAME 0
         sudo cp -f images/*.trx opt/images
         sudo ./clear_tree_simple
         
