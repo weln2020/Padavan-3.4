@@ -27,8 +27,8 @@ jobs:
         #cd user/busybox && sed -i "s/SRC_NAME=busybox.*/SRC_NAME=busybox-1.24.x/g" ./Makefile
     - name: 开始编译
       run: |
-        cd trunk && for m in ${{ github.event.inputs.production }}; do fakeroot ./build_firmware_ci $m;
-        mv -f images/*.trx /opt/images; ./clear_tree_simple >/dev/null 2>&1; done
+        cd trunk && sudo ./build_firmware_ci ${{ github.event.inputs.production }} 0
+        mv -f images/*.trx /opt/images && sudo ./clear_tree_simple >/dev/null 2>&1
     - name: 上传到Artifacts
       uses: actions/upload-artifact@master
       with:
