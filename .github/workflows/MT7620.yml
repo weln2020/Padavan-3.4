@@ -26,7 +26,7 @@ jobs:
         #cd trunk && sed -i "s/busybox_id=\"1.34.1\"/busybox_id=\"1.24.x\"/g" ./build_firmware_modify
         #cd user/busybox && sed -i "s/SRC_NAME=busybox.*/SRC_NAME=busybox-1.24.x/g" ./Makefile
         cwd=`pwd` && DIR=${cwd//\//\\\/}\\/toolchain-mipsel
-        sed -i "s/^CONFIG_TOOLCHAIN_DIR=.*$/CONFIG_TOOLCHAIN_DIR=${DIR}/g" ttrunk/configs/templates/${{ github.event.inputs.production }}.config
+        sed -i "s/^CONFIG_TOOLCHAIN_DIR=.*$/CONFIG_TOOLCHAIN_DIR=${DIR}/g" trunk/configs/templates/${{ github.event.inputs.production }}.config
     - name: 开始编译
       run: |
         cd trunk && sudo ./build_firmware_ci ${{ github.event.inputs.production }} 0
