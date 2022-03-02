@@ -20,12 +20,13 @@ jobs:
         sudo apt install libtool-bin gperf python3-docutils autopoint gettext
     - name: 准备工具链
       run: |
-        cd toolchain-mipsel && sh dl_toolchain.sh
+        mkdir -p /opt/images && cd toolchain-mipsel && sh dl_toolchain.sh
     - name: 开始编译
       run: |
-        cd trunk && for m in ${{ github.event.inputs.production }}; do fakeroot ./build_firmware_ci $m; done
+        cd trunk && for m in ${{ github.event.inputs.production }}; do fakeroot ./clear_tree_simple;
+        ./build_firmware_ci $m; mv -f images/*.trx /opt/images; done
     - name: 上传到Artifacts
       uses: actions/upload-artifact@v2.2.1
       with:
         name: Padavan-3.4
-        path: trunk/images
+        path: /opt/images
