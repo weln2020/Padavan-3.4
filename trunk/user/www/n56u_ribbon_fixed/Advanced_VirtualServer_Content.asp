@@ -76,7 +76,7 @@ function initial(){
 	if(!support_ipv6())
 		id_menu--;
 
-	show_banner(2);
+	show_banner(1);
 	show_menu(5,4,id_menu);
 	show_footer();
 

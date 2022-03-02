@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><#Web_Title#> - <#menu5_10_1#></title>
+<title><#Web_Title#> - <#menu5_6_8#></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
@@ -34,7 +34,7 @@ $j(document).ready(function() {
 
 function initial(){
 	show_banner(1);
-	show_menu(5,8,1);
+	show_menu(5,7,8);
 	show_footer();
 
 	var num_usb = support_num_usb();

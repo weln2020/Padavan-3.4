@@ -20,13 +20,20 @@
 <% login_state_hook(); %>
 
 function initial(){
+    var id_menu = 7;
+	if(get_ap_mode()){
+	    id_menu = 6;
+		if (lan_proto == '1')
+			id_menu--;
+		showhide_div('row_lost_action', 0);
+	}else{
+		on_click_mroute();
+	}
 	show_banner(1);
-	show_menu(5,8,3);
+	show_menu(5,3,id_menu);
 	show_footer();
 	load_body();
 
-	if(get_ap_mode())
-		showhide_div('row_lost_action', 0);
 
 	poll_mode_changed();
 }

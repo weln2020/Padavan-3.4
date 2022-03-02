@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><#Web_Title#> - <#menu5_10_2#></title>
+<title><#Web_Title#> - <#menu5_6_7#></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
@@ -21,7 +21,7 @@
 
 function initial(){
 	show_banner(1);
-	show_menu(5,8,2);
+	show_menu(5,7,7);
 	show_footer();
 
 	if (!login_safe())

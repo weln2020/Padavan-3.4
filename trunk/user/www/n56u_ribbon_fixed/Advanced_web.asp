@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><#Web_Title#> - 菜单设置</title>
+<title><#Web_Title#> - <#menu5_6_9#></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
@@ -46,7 +46,7 @@ $j(document).ready(function() {
 <% login_state_hook(); %>
 function initial(){
 	show_banner(2);
-	show_menu(5,8,4);
+	show_menu(5,7,9);
 	show_footer();
 	if (!login_safe())
 		textarea_scripts_enabled(0);
@@ -82,13 +82,13 @@ if (found_app_smartdns() || found_app_adguardhome()){
 
 
 function applyRule(){
-	//if(validForm()){
+	if(validForm()){
 		showLoading();
 		document.form.action_mode.value = " Apply ";
 		document.form.current_page.value = "Advanced_web.asp";
 		document.form.next_page.value = "";
 		document.form.submit();
-	//}
+	}
 }
 
 </script>
