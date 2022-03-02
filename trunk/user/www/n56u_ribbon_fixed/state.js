@@ -433,7 +433,7 @@ var tabM2 = [
 	{ "title": "<#menu5_2_4#>", "link": "Advanced_IPTV_Content.asp" },
 	{ "title": "<#menu5_2_5#>", "link": "Advanced_Switch_Content.asp" },
 	{ "title": "<#menu5_2_6#>", "link": "Advanced_WOL_Content.asp" },
-	{ "title": "<#menu5_10_3#>", "link": "Advanced_InetDetect_Content.asp" }
+	{ "title": "<#menu5_2_7#>", "link": "Advanced_InetDetect_Content.asp" }
 ];
 var tabM3 = [
 	{ "title": "<#menu5_3_1#>", "link": "Advanced_WAN_Content.asp" },
