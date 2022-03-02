@@ -432,7 +432,8 @@ var tabM2 = [
 	{ "title": "<#menu5_2_3#>", "link": "Advanced_GWStaticRoute_Content.asp" },
 	{ "title": "<#menu5_2_4#>", "link": "Advanced_IPTV_Content.asp" },
 	{ "title": "<#menu5_2_5#>", "link": "Advanced_Switch_Content.asp" },
-	{ "title": "<#menu5_2_6#>", "link": "Advanced_WOL_Content.asp" }
+	{ "title": "<#menu5_2_6#>", "link": "Advanced_WOL_Content.asp" },
+	{ "title": "<#menu5_10_3#>", "link": "Advanced_InetDetect_Content.asp" }
 ];
 var tabM3 = [
 	{ "title": "<#menu5_3_1#>", "link": "Advanced_WAN_Content.asp" },
@@ -461,12 +462,9 @@ var tabM6 = [
 	{ "title": "<#menu5_6_1#>", "link": "Advanced_OperationMode_Content.asp" },
 	{ "title": "<#menu5_6_3#>", "link": "Advanced_FirmwareUpgrade_Content.asp" },
 	{ "title": "<#menu5_6_4#>", "link": "Advanced_SettingBackup_Content.asp" },
-	{ "title": "<#menu5_6_6#>", "link": "Advanced_Console_Content.asp" }
-];
-var tabM7 = [
+	{ "title": "<#menu5_6_6#>", "link": "Advanced_Console_Content.asp" },
 	{ "title": "<#menu5_10_1#>", "link": "Advanced_Tweaks_Content.asp" },
 	{ "title": "<#menu5_10_2#>", "link": "Advanced_Scripts_Content.asp" },
-	{ "title": "<#menu5_10_3#>", "link": "Advanced_InetDetect_Content.asp" },
 	{ "title": "<#menu5_22_1#>", "link": "Advanced_web.asp" }
 ];
 var tabM8 = [
@@ -493,7 +491,6 @@ tabMenuHash.put('4', tabM3);
 tabMenuHash.put('5', tabM4);
 tabMenuHash.put('6', tabM5);
 tabMenuHash.put('7', tabM6);
-tabMenuHash.put('8', tabM7);
 tabMenuHash.put('9', tabM8);
 tabMenuHash.put('10', tabM9);
 
@@ -512,7 +509,7 @@ menuL1.push({ "title": "<#menu4#>", "link": "Main_TrafficMonitor_realtime.asp", 
 menuL1.push({ "title": "<#menu5_8#>", "link": "Advanced_System_Info.asp", "icon": "icon-random" });
 menuL1.push({ "title": "<#menu5#>", "link": "as.asp", "icon": "icon-wrench" });
 
-//Level 2 Menu Setting
+//Level 2 Menu List
 //sub 与 L1的sub 对应，自动显示到L1下面
 var menuL2 = [
 	{ "title": "<#menu5_11#>", "link": tabMenuHash.get('1')[0].link, index: "1" },
@@ -522,7 +519,6 @@ var menuL2 = [
 	{ "title": "<#menu5_5#>", "link": tabMenuHash.get('5')[0].link, index: "5" },
 	{ "title": "<#menu5_4#>", "link": tabMenuHash.get('6')[0].link, index: "6" },
 	{ "title": "<#menu5_6#>", "link": tabMenuHash.get('7')[0].link, index: "7" },
-	{ "title": "<#menu5_10#>", "link": tabMenuHash.get('8')[0].link, index: "8" },
 	{ "title": "<#menu5_9#>", "link": support_2g_radio() ? tabMenuHash.get('9')[0].link : "Main_EStatus_Content.asp", index: "9" },
 	{ "title": "<#menu5_7#>", "link": tabMenuHash.get('10')[0].link, index: "10" }
 ];
