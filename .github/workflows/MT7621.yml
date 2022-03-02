@@ -23,7 +23,7 @@ jobs:
         cd toolchain-mipsel && sh dl_toolchain.sh
     - name: 开始编译
       run: |
-        cd trunk && for m in ${{ github.event.inputs.production }}; do fakeroot ./build_firmware_ci $m; ./clear_tree_simple >/dev/null 2>&1; done
+        cd trunk && for m in ${{ github.event.inputs.production }}; do fakeroot ./build_firmware_ci $m; done
     - name: 上传到Artifacts
       uses: actions/upload-artifact@v2.2.1
       with:
