@@ -28,4 +28,4 @@ jobs:
       uses: actions/upload-artifact@v2.2.1
       with:
         name: Padavan-3.4
-        path: images
+        path: trunk/images
